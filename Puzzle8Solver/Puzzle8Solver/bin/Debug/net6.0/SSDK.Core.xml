@@ -1,0 +1,1810 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SSDK.Core</name>
+    </assembly>
+    <members>
+        <member name="T:SSDK.Core.Algorithms.Graphs.Exploration.DFS">
+            <summary>
+            A helper/extension class that contains the algorithm for DFS search on an arbitrary graph and node.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.Exploration.DFS.VTX_UNVISITED">
+            <summary>
+            A constant for the GT state of the vertex when unvisited in DFS.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.Exploration.DFS.VTX_VISITED">
+            <summary>
+            A constant for the GT state of the vertex when visited in DFS.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.Exploration.DFS.EDGE_UNEXPLORED">
+            <summary>
+            A constant for the GT state of the edge when unexplored in DFS.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.Exploration.DFS.EDGE_DISCOVERY">
+            <summary>
+            A constant for the GT state of the edge when 'discovered' in DFS.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.Exploration.DFS.EDGE_BACK">
+            <summary>
+            A constant for the GT state of the edge when it leads to a discovered vertex.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Algorithms.Graphs.Exploration.DFS.DepthFirstSearch``1(SSDK.Core.Structures.Graphs.Graph{``0},SSDK.Core.Structures.Graphs.GraphVertex{``0})">
+            <summary>
+            Performs depth-first search (dfs) on the graph and given vertex (unweighted).
+            </summary>
+            <param name="v">the vertex to start from</param>
+            <returns>the graph traversal of the search</returns>
+        </member>
+        <member name="T:SSDK.Core.Algorithms.Graphs.ShortestPath.BFS">
+            <summary>
+            A helper/extension class that contains the algorithm for BFS.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.ShortestPath.BFS.VTX_BFS_UNVISITED">
+            <summary>
+            A constant for the GT state of the vertex when unvisited in BFS.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.ShortestPath.BFS.VTX_BFS_VISITED">
+            <summary>
+            A constant for the GT state of the vertex when visited in BFS.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.ShortestPath.BFS.EDGE_BFS_UNEXPLORED">
+            <summary>
+            A constant for the GT state of the edge when unexplored in BFS.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.ShortestPath.BFS.EDGE_BFS_DISCOVERY">
+            <summary>
+            A constant for the GT state of the edge when 'discovered' in BFS.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.ShortestPath.BFS.EDGE_BFS_CROSS">
+            <summary>
+            A constant for the GT state of the cross edge when it leads to a visited vertex in BFS.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Algorithms.Graphs.ShortestPath.BFS.BreadthFirstSearch``1(SSDK.Core.Structures.Graphs.Graph{``0},SSDK.Core.Structures.Graphs.GraphVertex{``0},SSDK.Core.Structures.Graphs.GraphVertex{``0})">
+            <summary>
+            Performs breadth-first search (bfs) on the graph and given vertex (unweighted).
+            </summary>
+            <param name="v">the vertex to start from</param>
+            <param name="vTarget">
+            if true, then the algorithm stops when the given vertex (vTarget) is reached.
+            </param>
+            <returns>the graph traversal of the search</returns>
+        </member>
+        <member name="T:SSDK.Core.Algorithms.Graphs.ShortestPath.DAGDistance">
+            <summary>
+            A helper/extension class that contains the algorithm for DAG distances (shortest path) search on a weighted
+            graph.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.ShortestPath.DAGDistance.VTX_UNVISITED">
+            <summary>
+            A constant for the GT state of the vertex when unvisited in DAG distances.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.ShortestPath.DAGDistance.VTX_VISITED">
+            <summary>
+            A constant for the GT state of the vertex when visited in DAG distances.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.ShortestPath.DAGDistance.EDGE_UNEXPLORED">
+            <summary>
+            A constant for the GT state of the edge when unexplored in DAG distances.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.ShortestPath.DAGDistance.EDGE_DISCOVERY">
+            <summary>
+            A constant for the GT state of the edge when 'discovered' in DAG distances.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.ShortestPath.DAGDistance.EDGE_CROSS">
+            <summary>
+            A constant for the GT state of the edge when 'discovered' in DAG distances,
+            but the distance was higher than another edge that 'discovered' it.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Algorithms.Graphs.ShortestPath.DAGDistance.ShortestPathSearchDAG``1(SSDK.Core.Structures.Graphs.Graph{``0},SSDK.Core.Structures.Graphs.GraphVertex{``0},SSDK.Core.Structures.Graphs.GraphVertex{``0})">
+            <summary>
+            Performs DAG distances shortest path algorithm on the graph and given vertex (weighted).
+            If graph either undirected or cyclic, then methods applied to the resulting traversal may
+            result in stack overflow or insufficent memory.
+            </summary>
+            <param name="v">the vertex to start from</param>
+            <param name="vTarget">
+            if true, then the algorithm stops when the given vertex (vTarget) is reached.
+            </param>
+            <returns>the graph traversal of the search</returns>
+            <remarks>
+            It is assumed that the graph is connected, edges are undirected and edge weights are not negative.
+            </remarks>
+        </member>
+        <member name="T:SSDK.Core.Algorithms.Graphs.ShortestPath.Dijkstra">
+            <summary>
+            A helper/extension class that contains the algorithm for Dijkstra's shortest path search on a weighted
+            graph.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.ShortestPath.Dijkstra.VTX_UNVISITED">
+            <summary>
+            A constant for the GT state of the vertex when unvisited in Dijkstra.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.ShortestPath.Dijkstra.VTX_VISITED">
+            <summary>
+            A constant for the GT state of the vertex when visited in Dijkstra.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.ShortestPath.Dijkstra.EDGE_UNEXPLORED">
+            <summary>
+            A constant for the GT state of the edge when unexplored in Dijkstra.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Graphs.ShortestPath.Dijkstra.EDGE_DISCOVERY">
+            <summary>
+            A constant for the GT state of the edge when 'discovered' in Dijkstra.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Algorithms.Graphs.ShortestPath.Dijkstra.ShortestPathSearchDijkstra``1(SSDK.Core.Structures.Graphs.Graph{``0},SSDK.Core.Structures.Graphs.GraphVertex{``0},SSDK.Core.Structures.Graphs.GraphVertex{``0})">
+            <summary>
+            Performs dijkstra's shortest path search on the graph and given vertex (weighted).
+            </summary>
+            <param name="v">the vertex to start from</param>
+            <param name="vTarget">
+            if true, then the algorithm stops when the given vertex (vTarget) is reached.
+            </param>
+            <returns>the graph traversal of the search</returns>
+            <remarks>
+            It is assumed that the graph is connected, edges are undirected and edge weights are not negative.
+            </remarks>
+        </member>
+        <member name="T:SSDK.Core.Algorithms.Sorting.TopologicalSort">
+            <summary>
+            A helper/extension class that contains the methods for a topological sort.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Sorting.TopologicalSort.VTX_UNVISITED">
+            <summary>
+            A constant for the GT state of the vertex when unvisited in Topological Sort.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Sorting.TopologicalSort.VTX_VISITED">
+            <summary>
+            A constant for the GT state of the vertex when visited in Topological Sort.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Sorting.TopologicalSort.EDGE_UNEXPLORED">
+            <summary>
+            A constant for the GT state of the edge when unexplored in Topological Sort.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Sorting.TopologicalSort.EDGE_DISCOVERY">
+            <summary>
+            A constant for the GT state of the edge when 'discovered' in Topological Sort.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Algorithms.Sorting.TopologicalSort.EDGE_FORWARD">
+            <summary>
+            A constant for the GT state of the edge when 'discovered' 
+            but vertex to is already visited in Topological Sort.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Algorithms.Sorting.TopologicalSort.SortTopologically``1(SSDK.Core.Structures.Graphs.Graph{``0})">
+            <summary>
+            Performs DAG topological sort on the graph. Assumes
+            the graph is directed and acyclic.
+            </summary>
+            <param name="on">the graph to perform the sort on</param>
+            <returns>a traversal with configuration (vertices) set to the topological ordering</returns>
+        </member>
+        <member name="T:SSDK.Core.Algorithms.Sorting.BucketSort">
+            <summary>
+            A helper/extension class that contains the methods for an bucket sort
+            algorithm, which runs in O(n + k) time. where k is the number of buckets.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Algorithms.Sorting.BucketSort.SortViaBucket``1(``0[],System.Int32,System.Func{``0,System.Int32})">
+            <summary>
+            Performs bucket sort on the given array, assuming the elements
+            are comparable. Estimation of O(n + k) running time.
+            </summary>
+            <param name="array">the array to perform the sort on</param>
+            <param name="bucketCount">the number of buckets the bucket selector generates</param>
+            <param name="bucketSelector">a function which puts the element of an array into a bucket</param>
+            <returns>
+            an integer array containing the start positions of all buckets.
+            </returns>
+        </member>
+        <member name="M:SSDK.Core.Algorithms.Sorting.BucketSort.GetBuckets``1(``0[],System.Int32,System.Func{``0,System.Int32})">
+            <summary>
+            Performs bucket sort on the given array, assuming the elements
+            are comparable. Estimation of O(n + k) running time.
+            Instead of modifying the original array and returning the indices of the
+            buckets, the buckets are simply returned.
+            </summary>
+            <param name="array">the array to look through</param>
+            <param name="bucketCount">the number of buckets the bucket selector generates</param>
+            <param name="bucketSelector">a function which puts the element of an array into a bucket</param>
+            <returns>
+            an linked list array containing all buckets.
+            </returns>
+        </member>
+        <member name="T:SSDK.Core.Algorithms.Sorting.InsertionSort">
+            <summary>
+            A helper/extension class that contains the methods for an insertion sort
+            algorithm, which runs in O(n^2) time.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Algorithms.Sorting.InsertionSort.SortViaInsertion``1(``0[],System.Boolean)">
+            <summary>
+            Performs insertion sort on the given array, assuming the elements
+            are comparable. Estimation of O(n^2) running time.
+            </summary>
+            <param name="array">the array to perform the sort on</param>
+            <param name="descendingOrder">if true, then sort in descendingOrder</param>
+        </member>
+        <member name="T:SSDK.Core.Algorithms.Sorting.MergeSort">
+            <summary>
+            A helper/extension class that contains the methods for a merge sort
+            algorithm, which runs in O(n log n) time.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Algorithms.Sorting.MergeSort.SortViaMerge``1(``0[],System.Boolean)">
+            <summary>
+            Performs merge sort on the given array, assuming the elements
+            are comparable. Estimation of O(n log n) running time.
+            </summary>
+            <param name="array">the array to perform the sort on</param>
+            <param name="descendingOrder">if true, then sort in descending order</param>
+        </member>
+        <member name="M:SSDK.Core.Algorithms.Sorting.MergeSort.SortViaMerge``1(``0[],System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Computes the merge sort algorithm onto the array with the given start and end (inclusive)
+            </summary>
+            <typeparam name="T">the type of the array</typeparam>
+            <param name="array">the array to sort</param>
+            <param name="start">the element index to start at</param>
+            <param name="end">the element index to end at</param>
+            <param name="descendingOrder">if true, then sort in descending order</param>
+        </member>
+        <member name="M:SSDK.Core.Algorithms.Sorting.MergeSort.Merge``1(``0[],System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Computes the merge algorithm onto the array with the given start, middle and end (inclusive)
+            </summary>
+            <typeparam name="T">the type of the array</typeparam>
+            <param name="array">the array to sort</param>
+            <param name="start">the element index to start at</param>
+            <param name="middle">the middle index</param>
+            <param name="end">the element index to end at</param>
+            <param name="descendingOrder">if true, then sort in descending order</param>
+        </member>
+        <member name="T:SSDK.Core.Algorithms.Sorting.QuickSort">
+            <summary>
+            A helper/extension class that contains the methods for a merge sort
+            algorithm, which runs in O(n log n) time.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Algorithms.Sorting.QuickSort.SortViaQuickSort``1(``0[],System.Boolean)">
+            <summary>
+            Performs quick sort on the given array, assuming the elements
+            are comparable. Estimation of O(n^2) running time.
+            </summary>
+            <param name="array">the array to perform the sort on</param>
+            <param name="descendingOrder">if true, then sort in descending order</param>
+        </member>
+        <member name="M:SSDK.Core.Algorithms.Sorting.QuickSort.SortViaQuickSort``1(``0[],System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Computes the merge sort algorithm onto the array with the given start and end (inclusive).
+            This function is reoccuring./
+            </summary>
+            <typeparam name="T">the type of the array</typeparam>
+            <param name="array">the array to sort</param>
+            <param name="start">the element index to start at</param>
+            <param name="end">the element index to end at</param>
+            <param name="descendingOrder">if true, then sort in descending order</param>
+        </member>
+        <member name="T:SSDK.Core.Algorithms.Sorting.SelectionSort">
+            <summary>
+            A helper/extension class that contains the methods for an selection sort
+            algorithm, which runs in O(n^2) time.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Algorithms.Sorting.SelectionSort.SortViaSelection``1(``0[],System.Boolean)">
+            <summary>
+            Performs selection sort on the given array, assuming the elements
+            are comparable. Estimation of O(n^2) running time.
+            </summary>
+            <param name="array">the array to perform the sort on</param>
+            <param name="descendingOrder">if true, then sort in descendingOrder</param>
+        </member>
+        <member name="T:SSDK.Core.Exceptions.ConflictingDataException">
+            <summary>
+            Represents an exception that occurs when existing data conflicted
+            with the 
+            </summary>
+        </member>
+        <member name="T:SSDK.Core.Exceptions.OperationNotStartedException">
+            <summary>
+            Represents an exception that occurs when a operation was never
+            started, but it was ended.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Exceptions.OperationNotStartedException.Operation">
+            <summary>
+            Gets the operation that was never started, which caused this exception.
+            </summary>
+        </member>
+        <member name="T:SSDK.Core.Helpers.ArrayHelper">
+            <summary>
+            Contains static and extensions methods for arrays.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Helpers.ArrayHelper.DeepClone``1(``0[])">
+            <summary>
+            Creates a deep-clone of a given array.
+            </summary>
+            <typeparam name="T">the type of the array</typeparam>
+            <param name="array">the array to copy</param>
+            <returns>a deep-clone of the given array</returns>
+        </member>
+        <member name="M:SSDK.Core.Helpers.ArrayHelper.Exchange``1(``0[],System.Int32,System.Int32)">
+            <summary>
+            Exchanges two elements in an array based on their index.
+            Assumes that the indices is within range.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <exception cref="T:System.IndexOutOfRangeException">
+            occurs when either index is out of range
+            </exception>
+            <param name="array">the array to exchange elements in</param>
+            <param name="from">the first element to exchange</param>
+            <param name="to">the second element to exchange</param>
+        </member>
+        <member name="M:SSDK.Core.Helpers.ArrayHelper.IsSorted``1(``0[],System.Boolean)">
+            <summary>
+            Checks whether the array is sorted or not, assuming the array type
+            is comparable.
+            </summary>
+            <typeparam name="T">the type of the array</typeparam>
+            <param name="array">the array to check</param>
+            <param name="descendingOrder">if in descending order, then check descending order sort (3, 2, 1, etc.)</param>
+            <returns>true if the array is sorted</returns>
+        </member>
+        <member name="M:SSDK.Core.Helpers.ArrayHelper.Substring``1(``0[],System.Int32,System.Int32)">
+            <summary>
+            Gets the substring representation of an array.
+            </summary>
+            <typeparam name="T">the type of the array</typeparam>
+            <param name="array">the array to build a string from</param>
+            <param name="start">the start index</param>
+            <param name="endExclusive">the end index exclusive</param>
+            <returns>the string representation of the indices (e.g. [0, 1, 2])</returns>
+        </member>
+        <member name="M:SSDK.Core.Helpers.ArrayHelper.BinarySearch``1(``0[],``0)">
+            <summary>
+            Performs a binary search on a sorted array.
+            </summary>
+            <typeparam name="T">the type of the array</typeparam>
+            <param name="array">the array to check</param>
+            <param name="target">the element to find</param>
+            <returns>the index of the element, or -1 if not found.</returns>
+        </member>
+        <member name="T:SSDK.Core.Helpers.StringHelper">
+            <summary>
+            Contains methods for helping with strings
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Helpers.StringHelper.InsertOverwriteCenter(System.String,System.Int32,System.String)">
+            <summary>
+            Inserts a string at a position by overwriting the original string.
+            </summary>
+            <param name="original">the original string</param>
+            <param name="index">the index to insert at</param>
+            <param name="toInsert">the string to insert</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:SSDK.Core.Structures.Graphs.GraphHelper" -->
+        <member name="M:SSDK.Core.Structures.Graphs.GraphHelper.GetTotalDistance``1(System.Collections.Generic.IEnumerable{SSDK.Core.Structures.Graphs.GraphEdge{``0}})">
+            <summary>
+            Gets the total distance from a path (a list of edges)
+            </summary>
+            <typeparam name="T">the type of element stored in the graph</typeparam>
+            <param name="path">the list of edges that make the path</param>
+            <returns>the total distance</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:SSDK.Core.Structures.Graphs.Graph`1" -->
+        <member name="F:SSDK.Core.Structures.Graphs.Graph`1._Edges">
+            <summary>
+            A list of all edges contained within the graph.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.Graph`1.Edges">
+            <summary>
+            A list of all edges contained within the graph (read-only).
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Structures.Graphs.Graph`1._Vertices">
+            <summary>
+            A list of all vertices in the graph.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.Graph`1.Vertices">
+            <summary>
+            A list of all edges contained within the graph (read-only).
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.Graph`1.Clone">
+            <summary>
+            Creates a deep-copy of this graph.
+            </summary>
+            <returns>an exact clone of this graph (all vertices and edges)</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.Graph`1.Transpose">
+            <summary>
+            Gets the transposed graph, which is an exact copy of this graph, except with
+            all edges reversed.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.Graph`1.Add(`0)">
+            <summary>
+            Adds a single vertex with the given value.
+            </summary>
+            <param name="vertexValue">value of the vertex</param>
+            <returns>the vertex that was added</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.Graph`1.Join(SSDK.Core.Structures.Graphs.GraphVertex{`0},SSDK.Core.Structures.Graphs.GraphVertex{`0},SSDK.Core.Structures.Primitive.UncontrolledNumber)">
+            <summary>
+            Joins two vertices together in a multi-way edge.
+            </summary>
+            <param name="vertex1">first vertex to join</param>
+            <param name="vertex2">second vertex to join</param>
+            <param name="weight">the 'distance' between the two vertices</param>
+            <returns>the graph edge joining the two vertices</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.Graph`1.Join(SSDK.Core.Structures.Graphs.GraphVertex{`0},SSDK.Core.Structures.Graphs.GraphVertex{`0},System.Func{SSDK.Core.Structures.Primitive.UncontrolledNumber})">
+            <summary>
+            Joins two vertices together in a multi-way edge.
+            </summary>
+            <param name="vertex1">first vertex to join</param>
+            <param name="vertex2">second vertex to join</param>
+            <param name="altWeight">the 'distance' function between the two vertices</param>
+            <returns>the graph edge joining the two vertices</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.Graph`1.Join(System.Int32,System.Int32,SSDK.Core.Structures.Primitive.UncontrolledNumber)">
+            <summary>
+            Joins two vertices together in a multi-way edge.
+            </summary>
+            <param name="vertex1">first vertex index to join</param>
+            <param name="vertex2">second vertex index to join</param>
+            <param name="weight">the 'distance' between the two vertices</param>
+            <returns>the graph edge joining the two vertices</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.Graph`1.Join(System.Int32,System.Int32,System.Func{SSDK.Core.Structures.Primitive.UncontrolledNumber})">
+            <summary>
+            Joins two vertices together in a multi-way edge.
+            </summary>
+            <param name="vertex1">first vertex index to join</param>
+            <param name="vertex2">second vertex index to join</param>
+            <param name="altWeight">the 'distance' function between the two vertices</param>
+            <returns>the graph edge joining the two vertices</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.Graph`1.CreatePath(SSDK.Core.Structures.Graphs.GraphVertex{`0},SSDK.Core.Structures.Graphs.GraphVertex{`0},SSDK.Core.Structures.Primitive.UncontrolledNumber)">
+            <summary>
+            Creates a path from one vertex to another in a single-way edge.
+            </summary>
+            <param name="vertex1">first vertex from</param>
+            <param name="vertex2">second vertex to</param>
+            <param name="weight">the 'distance' between the two vertices</param>
+            <returns>the graph edge joining the two vertices</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.Graph`1.CreatePath(SSDK.Core.Structures.Graphs.GraphVertex{`0},SSDK.Core.Structures.Graphs.GraphVertex{`0},System.Func{SSDK.Core.Structures.Primitive.UncontrolledNumber})">
+            <summary>
+            Creates a path from one vertex to another in a single-way edge.
+            </summary>
+            <param name="vertex1">first vertex from</param>
+            <param name="vertex2">second vertex to</param>
+            <param name="altWeight">the 'distance' function between the two vertices</param>
+            <returns>the graph edge joining the two vertices</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.Graph`1.CreatePath(System.Int32,System.Int32,SSDK.Core.Structures.Primitive.UncontrolledNumber)">
+            <summary>
+            Creates a path from one vertex to another in a single-way edge.
+            </summary>
+            <param name="vertex1">first vertex index from</param>
+            <param name="vertex2">second vertex index to</param>
+            <param name="weight">the 'distance' between the two vertices</param>
+            <returns>the graph edge joining the two vertices</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.Graph`1.CreatePath(System.Int32,System.Int32,System.Func{SSDK.Core.Structures.Primitive.UncontrolledNumber})">
+            <summary>
+            Creates a path from one vertex to another in a single-way edge.
+            </summary>
+            <param name="vertex1">first vertex index from</param>
+            <param name="vertex2">second vertex index to</param>
+            <param name="altWeight">the 'distance' function between the two vertices</param>
+            <returns>the graph edge joining the two vertices</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.Graph`1.RemoveEdge(SSDK.Core.Structures.Graphs.GraphEdge{`0})">
+            <summary>
+            Removes the given edge from the graph.
+            Using this method will mess up index references, so use 
+            UpdateIndexReferences afterwards to avert this issue
+            </summary>
+            <param name="edge">the edge to remove</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.Graph`1.GetEdge(SSDK.Core.Structures.Graphs.GraphVertex{`0},SSDK.Core.Structures.Graphs.GraphVertex{`0},System.Boolean)">
+            <summary>
+            Gets the first edge matching from=v1 and to=v2, or if multiway is allowed, then an edge
+            that matches accordingly.
+            </summary>
+            <param name="v1">the vertex from</param>
+            <param name="v2">the vertex to</param>
+            <param name="allowMultiway">if true, then v1 can be to and v2 can be from</param>
+            <returns></returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.Graph`1.UpdateIndexReferences">
+            <summary>
+            Updates all edge and vertices indices to ensure they have an exact reference.
+            </summary>
+        </member>
+        <member name="T:SSDK.Core.Structures.Graphs.GraphEdge`1">
+            <summary>
+            Represents a traversable edge from one vertex to another, with
+            Multiway indicating that the edge can be traversed from both directions.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphEdge`1.LatestIndex">
+            <summary>
+            Gets or sets the latest index that this edge was found on in the root graph.
+            Updated generally during graph traversal constructor.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphEdge`1.EdgeNo">
+            <summary>
+            Gets the edge number, which is a unique number for the edge within
+            a single graph.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphEdge`1.VertexFrom">
+            <summary>
+            Gets the edge that this graph edge travels from.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphEdge`1.VertexTo">
+            <summary>
+            Gets the edge that this graph edge travels to.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphEdge`1.Tag">
+            <summary>
+            A tag that may be used for reference purposes.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphEdge`1.Multiway">
+            <summary>
+            Gets whether the graph edge can be traversed both ways
+            (i.e. from -> to and to -> from instead of just from -> to)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphEdge`1.Weight">
+            <summary>
+            Gets or sets the weight of the edge, which generally represents
+            the standard distance between these vertices.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphEdge`1.AltWeight">
+            <summary>
+            Gets or sets the alternate weight function, which is calculated when
+            the edge is traversed.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.GraphEdge`1.Traverse(SSDK.Core.Structures.Graphs.GraphVertex{`0})">
+            <summary>
+            Traverses the edge starting from a given node, assuming
+            that the parameter is either vertex from or vertex to.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.GraphEdge`1.TraverseBackFrom(SSDK.Core.Structures.Graphs.GraphVertex{`0})">
+            <summary>
+            Traverses the edge back ending from a given node
+            (i.e. in a single-way edge, the vertex from must be the end of the edge), 
+            assuming that the parameter is either vertex from or vertex to.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.GraphEdge`1.CanTraverse(SSDK.Core.Structures.Graphs.GraphVertex{`0})">
+            <summary>
+            Returns true if the edge can be traversed from the given vertex.
+            </summary>
+            <param name="from">the vertex to traverse from</param>
+            <returns>true if a traversal can happen from the given vertex to the other</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.GraphEdge`1.CanTraverseBackFrom(SSDK.Core.Structures.Graphs.GraphVertex{`0})">
+            <summary>
+            Returns true if the edge can be traversed back from from the given vertex.
+            </summary>
+            <param name="from">the vertex to traverse from</param>
+            <returns>true if a traversal can happen from the given vertex to the other</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.GraphEdge`1.GetDistance">
+            <summary>
+            Returns the distance of the edge between the two vertices.
+            (i.e. the weight of the edge)
+            </summary>
+            <returns>the calculated weight (alt weight or standard weight)</returns>
+        </member>
+        <member name="T:SSDK.Core.Structures.Graphs.GraphTraversal`1">
+            <summary>
+            Represents a traversal of a given graph.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphTraversal`1.Type">
+            <summary>
+            Gets the type of traversal that occured on the graph.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphTraversal`1.On">
+            <summary>
+            Gets the graph that the traversal happened on.
+            </summary>
+            <remarks>
+            Note that this field is a direct reference to the graph, so any
+            changes to the graph may conflict with this traversal.
+            </remarks>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphTraversal`1.VertexStates">
+            <summary>
+            Gets the vertex states according to vertex index
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphTraversal`1.EdgeStates">
+            <summary>
+            Gets the edge states according to edge index
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphTraversal`1.VertexWeights">
+            <summary>
+            Gets the weight states according to vertex
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphTraversal`1.Configuration">
+            <summary>
+            Typically unmodified except on certain algorithms such as
+            topological sort, where the configuration is the topological order
+            (indices)
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.GraphTraversal`1.Reset(System.String)">
+            <summary>
+            Resets all vertex/edge states in the traversal.
+            Does not change configuration.
+            </summary>
+            <param name="newType">if specified, overwrites the current type reference</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.GraphTraversal`1.GetPathBackFrom(SSDK.Core.Structures.Graphs.GraphVertex{`0},System.Int32)">
+            <summary>
+            Gets the path between the initially traversed vertex and the target vertex.
+            </summary>
+            <param name="target">the target vertex that was reached in the traversal</param>
+            <param name="desiredEdgeState">
+            the edge state that allows a path to be made
+            (defaults to 1 as this is generally used for discovery edges)
+            </param>
+            <returns>a list of edges that is a path from the initial vertex to the target vertex</returns>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphVertex`1.LatestIndex">
+            <summary>
+            Gets or sets the latest index that this vertex was found on in the root graph.
+            Updated generally during graph traversal constructor.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphVertex`1.Root">
+            <summary>
+            Gets the root associatied with this vertex.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphVertex`1.Value">
+            <summary>
+            Gets or sets the value associated with this vertex
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphVertex`1.HasEdgesFrom">
+            <summary>
+            Returns true if this vertex has edges leading from it.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Structures.Graphs.GraphVertex`1._EdgesFrom">
+            <summary>
+            The list of all edges from this vertex to another.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphVertex`1.EdgesFrom">
+            <summary>
+            Gets the list of all edges from this vertex to another (do not modify)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphVertex`1.HasEdgesTo">
+            <summary>
+            Returns true if this vertex has edges leading to it.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Structures.Graphs.GraphVertex`1._EdgesTo">
+            <summary>
+            The list of all edges from another vertex to this vertex.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphVertex`1.EdgesTo">
+            <summary>
+            Gets the list of all edges from another vertex to this vertex (do not modify)
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.GraphVertex`1.AddEdge(SSDK.Core.Structures.Graphs.GraphEdge{`0})">
+            <summary>
+            Adds the edge to the list of edges from and edges to if it is relevant.
+            </summary>
+            <param name="edge"></param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.GraphVertex`1.DestroyEdges">
+            <summary>
+            Destroys all edges in this vertex, removing them from the Root graph.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Graphs.GraphVertex`1.RemoveEdgeReferences(SSDK.Core.Structures.Graphs.GraphEdge{`0})">
+            <summary>
+            Removes an edge reference in this vertex.
+            </summary>
+            <param name="edge"></param>
+        </member>
+        <member name="T:SSDK.Core.Structures.Linear.FPriorityQueue`2">
+            <summary>
+            A SSDK implementation of priority queue (min-heap), which has more flexibilility but is slower
+            than the native priority queue for basic functions.
+            </summary>
+            <typeparam name="TElement">the type of the element</typeparam>
+            <typeparam name="TPriority">the type of the priority</typeparam>
+        </member>
+        <member name="P:SSDK.Core.Structures.Linear.FPriorityQueue`2.Count">
+            <summary>
+            Gets the amount of 
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Structures.Linear.FPriorityQueue`2._HeapCount">
+            <summary>
+            Count of all elements in the queue.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Structures.Linear.FPriorityQueue`2._Items">
+            <summary>
+            The array that contains the heap.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Linear.FPriorityQueue`2.Enqueue(`0,`1)">
+            <summary>
+            Enqueues the element into the priority queue with the given priority.
+            </summary>
+            <param name="element">the element to enqueue</param>
+            <param name="priority">the priority to enqueue with</param>
+            <returns>an item which can be used to update the particular queue item</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Linear.FPriorityQueue`2.EnqueueItem(SSDK.Core.Structures.Linear.FPriorityQueueItem{`0,`1})">
+            <summary>
+            Enqueues the item into the priority queue.
+            </summary>
+            <param name="item">the item to enqueue</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Linear.FPriorityQueue`2.Upheap(SSDK.Core.Structures.Linear.FPriorityQueueItem{`0,`1})">
+            <summary>
+            Maintains the heap property by moving the item up if applicable.
+            </summary>
+            <param name="itemToDownheap">the item to upheap</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Linear.FPriorityQueue`2.SwapItem(SSDK.Core.Structures.Linear.FPriorityQueueItem{`0,`1},SSDK.Core.Structures.Linear.FPriorityQueueItem{`0,`1})">
+            <summary>
+            Swaps two items in the queue.
+            </summary>
+            <param name="item1"></param>
+            <param name="item2"></param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Linear.FPriorityQueue`2.Downheap(SSDK.Core.Structures.Linear.FPriorityQueueItem{`0,`1})">
+            <summary>
+            Maintains the heap property by moving the item down if applicable.
+            </summary>
+            <param name="itemToDownheap">the item to downheap</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Linear.FPriorityQueue`2.Dequeue">
+            <summary>
+            Dequeues a single element from the priority queue. 
+            </summary>
+            <returns>the element that has the highest (lowest) priority</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Linear.FPriorityQueue`2.DequeueItem">
+             <summary>
+            Dequeues a single queue item from the priority queue. 
+             </summary>
+             <returns>the item that has the highest (lowest) priority</returns>
+             <exception cref="T:System.InvalidOperationException">occurs when attempting to remove from an empty queue</exception>
+        </member>
+        <member name="M:SSDK.Core.Structures.Linear.FPriorityQueue`2.Remove(SSDK.Core.Structures.Linear.FPriorityQueueItem{`0,`1})">
+            <summary>
+            Removes the given element from the queue, assuming it is exists.
+            </summary>
+            <param name="queueItem">the item to remove</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Linear.FPriorityQueue`2.SetPriority(SSDK.Core.Structures.Linear.FPriorityQueueItem{`0,`1},`1)">
+            <summary>
+            Sets the priority of a given queue item, assuming it already exists in the queue with the old
+            priority.
+            </summary>
+            <param name="item">the item to set priority of</param>
+            <param name="newPriority">the new priority of the item</param>
+        </member>
+        <member name="T:SSDK.Core.Structures.Linear.FPriorityQueueItem`2">
+            <summary>
+            An item within a flexible priority queue, which contains the element, the priority,
+            and the index in which it is stored.
+            </summary>
+            <typeparam name="TElement"></typeparam>
+            <typeparam name="TPriority"></typeparam>
+        </member>
+        <member name="F:SSDK.Core.Structures.Linear.FPriorityQueueItem`2.Element">
+            <summary>
+            The element stored in the item.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Linear.FPriorityQueueItem`2.Priority">
+            <summary>
+            The priority of the item.
+            Use SetPriority in priority queue to update priority.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Linear.FPriorityQueueItem`2.HeapIndex">
+            <summary>
+            The index inside the queue heap
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Linear.FPriorityQueueItem`2.#ctor(`0,`1,System.Int32)">
+            <summary>
+            Create a new queue item with the given arguments.
+            </summary>
+            <param name="element">the element stored in the item</param>
+            <param name="priority">the priority of the item</param>
+            <param name="heapIndex">the index the item is stored in the heap</param>
+        </member>
+        <member name="T:SSDK.Core.Structures.Primitive.UncontrolledNumber">
+            <summary>
+            Represents a number with no max/min or precisional boundaries.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Primitive.UncontrolledNumber.CompleteInteger">
+            <summary>
+            Gets the complete integer, ignoring decimal boundaries.
+            e.g. 1.3 = 13
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Primitive.UncontrolledNumber.Integer">
+            <summary>
+            Represents the integer part of the number (i in i.000)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Primitive.UncontrolledNumber.Decimal">
+            <summary>
+            Represents the decimal part of the number (d in 0.0dd),
+            with exclusion to leading decimal zeroes.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Primitive.UncontrolledNumber.IsInfinity">
+            <summary>
+            If true, then this number is infinity.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Primitive.UncontrolledNumber.IsZero">
+            <summary>
+            If true, then this number is exactly zero.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Primitive.UncontrolledNumber.Infinity">
+            <summary>
+            Gets an instance of an infinity number.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Primitive.UncontrolledNumber.DecimalDigits">
+            <summary>
+            Gets how many digits are in the decimal
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Primitive.UncontrolledNumber.DecimalZeroes">
+            <summary>
+            Gets how many zeroes lead the first decimal digit.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Primitive.UncontrolledNumber.IsNegative">
+            <summary>
+            Returns true if the number is negative
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Structures.Primitive.UncontrolledNumber.ForceNegative">
+            <summary>
+            When the integer is zero, the number may forced to be negative.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Primitive.UncontrolledNumber.ConvertToDecimal(System.Numerics.BigInteger)">
+            <summary>
+            Converts the integer into a shortened integer (removes negative and unnecessary zeroes).
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Primitive.UncontrolledNumber.GetDigitCount(System.Numerics.BigInteger)">
+            <summary>
+            Gets the length of the positive integer.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Primitive.UncontrolledNumber.CompareDecimal(SSDK.Core.Structures.Primitive.UncontrolledNumber,SSDK.Core.Structures.Primitive.UncontrolledNumber)">
+            <summary>
+            Compares two decimal parts of two uncontrolled numbers
+            </summary>
+            <param name="a">number 1</param>
+            <param name="b">number 2</param>
+            <returns>if equal, then 0, else if frac a is smaller than b then -1 else 1</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Primitive.UncontrolledNumber.MatchDecimalDigits(SSDK.Core.Structures.Primitive.UncontrolledNumber,SSDK.Core.Structures.Primitive.UncontrolledNumber)">
+            <summary>
+            Extracts the _decimals from two numbers with an equal number of digits.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Primitive.UncontrolledNumber.GetMatchedCompleteInteger(SSDK.Core.Structures.Primitive.UncontrolledNumber,SSDK.Core.Structures.Primitive.UncontrolledNumber)">
+            <summary>
+            Extracts the _decimals from two numbers with an equal number of digits, and
+            returns the complete integers if the numbers had the resulting decimal values.
+            Only returns a positive value.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Structures.Primitive.UncontrolledNumber.DivisionAccuracy">
+            <summary>
+            Controls how accurate divisions are for the number.
+            Since divisions can result in irrational numbers, this limits the amount of decimals
+            that can result in an division.
+            </summary>
+        </member>
+        <member name="T:SSDK.Core.Structures.Trees.AVLSearchTree`1">
+            <summary>
+            An AVL tree is a balanced binary search tree
+            (i.e. using the tree's Add and Remove methods, the height
+            of any node in the tree differs by at most one)
+            </summary>
+        </member>
+        <member name="T:SSDK.Core.Structures.Trees.BinarySearchTree`1">
+            <summary>
+            A binary tree that maintains the root node is the smallest
+            element. Tree nodes in a heap tree must not be modified directly.
+            </summary>
+        </member>
+        <member name="T:SSDK.Core.Structures.Trees.BinaryTree`1">
+            <summary>
+            A binary tree is a abstract model of a heirarchical structure with each node
+            containing at most two children (left and right).
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTree`1.AllNodes">
+            <summary>
+            Gets all nodes existing in this tree
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTree`1.Height">
+            <summary>
+            Gets the height of the tree
+            (i.e. the height of the root node)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTree`1.IsComplete">
+            <summary>
+            True if all levels of the tree are full, or all levels but
+            the last level is full and all leaves are furthest to the left.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTree`1.IsProper">
+            <summary>
+            True if all nodes in this tree except leaf nodes has k children.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTree`1.IsEmpty">
+            <summary>
+            True if there exists no nodes in this tree.
+            (i.e. the root node doesn't exist)
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Structures.Trees.BinaryTree`1.K">
+            <summary>
+            Gets the k-ary ness of the tree.
+            (i.e. the maximum children a node has in this tree)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTree`1.MaximumInternalNodes">
+            <summary>
+            Gets the maximum internal nodes of this tree/subtree, assuming
+            the k-ary ness is the same.
+            (i.e. 2^h - 1)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTree`1.RootNode">
+            <summary>
+            Gets the root node of this tree.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTree`1.Size">
+            <summary>
+            Returns the number of nodes in this tree
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.Clone(System.Boolean)">
+            <summary>
+            Clones the current tree.
+            </summary>
+            <param name="deep">
+            If false, then only the reference to the root node is copied.
+            and modifications to the tree are then shared.
+            </param>
+            <returns>a new tree, which is an exact copy of this tree.</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.Clone(System.Func{SSDK.Core.Structures.Trees.BinaryTree{`0}},System.Boolean)">
+            <summary>
+            Clones the current tree.
+            </summary>
+            <param name="treeType">the tree type constructor</param>
+            <param name="deep">
+            If false, then only the reference to the root node is copied.
+            and modifications to the tree are then shared.
+            </param>
+            <returns>a new tree, which is an exact copy of this tree.</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.Add(`0)">
+            <summary>
+            Adds an element to the tree.
+            </summary>
+            <param name="element">the element to add</param>
+            <returns>the node that was added</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.Remove(SSDK.Core.Structures.Trees.BinaryTreeNode{`0})">
+            <summary>
+            Removes an element's node from the tree.
+            </summary>
+            <param name="elementNode">the element node to remove</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.Remove(`0)">
+            <summary>
+            Removes an element from the tree.
+            </summary>
+            <param name="element">the element to remove</param>
+            <returns>the node that was removed, with its references still existing.</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.SetRoot(`0)">
+            <summary>
+            Sets the root of the tree.
+            </summary>
+            <param name="element">the element contained within the root of the tree</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.SetRoot(SSDK.Core.Structures.Trees.BinaryTreeNode{`0})">
+            <summary>
+            Sets the root of the tree.
+            </summary>
+            <param name="root">the new root of the tree.</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.TraverseInPreOrder(System.Action{SSDK.Core.Structures.Trees.BinaryTreeNode{`0},System.Int32},System.Func{System.Boolean})">
+            <summary>
+            Performs the given action on every visit to a node, using 
+            pre-order traversal logic.
+            </summary>
+            <param name="traverseAction">the action to apply on every visited node (node, level)</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.TraverseInOrder(System.Action{SSDK.Core.Structures.Trees.BinaryTreeNode{`0},System.Int32},System.Int32,System.Func{System.Boolean})">
+            <summary>
+            Performs the given action on every visit to a node, using 
+            in-order traversal logic.
+            </summary>
+            <param name="traverseAction">the action to apply on every visited node (node, level)</param>
+            <param name="k">the k-ary of the tree (k/2) is where the in-order parent is visited.</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.TraverseInPostOrder(System.Action{SSDK.Core.Structures.Trees.BinaryTreeNode{`0},System.Int32},System.Func{System.Boolean})">
+            <summary>
+            Performs the given action on every visit to a node, using 
+            post-order traversal logic.
+            </summary>
+            <param name="traverseAction">the action to apply on every visited node (node, level)</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.TraverseInLevel(System.Action{SSDK.Core.Structures.Trees.BinaryTreeNode{`0},System.Int32},System.Func{System.Int32,System.Boolean},System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Traverses the nodes in pre-order and visits the node if the level selector
+            checks of (e.g. () => 2, visits all nodes in level 2).
+            </summary>
+            <param name="traverseAction">the action to apply on every visited node (w/ level)</param>
+            <param name="levelSelector">the selector which determines which nodes to visit based on level</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.IsLevelFull(System.Int32)">
+            <summary>
+            Returns true if the given level at depth l is full according to k-ary ness.
+            </summary>
+            <param name="level">the level to check</param>
+            <returns>true if the given level is full</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.Search(`0)">
+            <summary>
+            Gets the tree node that contains the element to search for.
+            The current method to search uses an inefficient method.
+            </summary>
+            <param name="searchFor">the element to search for</param>
+            <returns>null if not found, or the element if found.</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.ToBinaryTree(System.Func{SSDK.Core.Structures.Trees.BinaryTree{`0}},System.Boolean)">
+            <summary>
+            Converts this tree to a binary tree, assuming k=2
+            </summary>
+            <param name="treeType">a constructor for the tree type</param>
+            <returns>null if invalid tree, else the resulting tree</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.AddBinaryNode(SSDK.Core.Structures.Trees.BinaryTreeNode{`0},SSDK.Core.Structures.Trees.BinaryTreeNode{`0},SSDK.Core.Structures.Trees.BinaryTreeNode{`0},System.Boolean)">
+            <summary>
+            Adds a given node to the binary tree node, returning false if
+            the number of children exceeds two.
+            </summary>
+            <param name="to">the node to add itself to</param>
+            <param name="node"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.GetTextVisualisation(System.Boolean,System.Boolean)">
+            <summary>
+            Gets the text representation of the binary tree, 
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTree`1.GetHeirarchicalTextVisualisation">
+            <summary>
+            Gets the heirarchical text visualisation of a binary tree node.
+            i.e.
+            root
+            - left
+                - left
+                - right
+            - right
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.IsBalanced">
+            <summary>
+            True if the difference between Left and Right's height is at most 1.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.IsLeft">
+            <summary>
+            True if this node is the left descendent of the parent.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.IsRight">
+            <summary>
+            True if this node is the right descendent of the parent.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.Left">
+            <summary>
+            Gets or sets the left-side child assuming k=2
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.LeftMostNode">
+            <summary>
+            Gets the left-most node (i.e. travelling left as much as possible)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.LargestChild">
+            <summary>
+            Gets the child with the largest height, or if only
+            one child exists, returns that.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.InOrderPredecessor">
+            <summary>
+            Gets the in-order predecessor of this node, simply
+            returning null if it does not exist.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.InOrderSuccessor">
+            <summary>
+            Gets the in-order successor of this node, simply
+            returning null if it does not exist.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.Right">
+            <summary>
+            Gets or sets the right-side child assuming k=2
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.RightMostNode">
+            <summary>
+            Gets the right-most node (i.e. travelling right as much as possible)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.Sibling">
+            <summary>
+            Gets the opposing sibling in a binary tree.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.SmallestChild">
+            <summary>
+            Gets the child with the smallest height, or if only
+            one child exists, returns that.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.AllNodes">
+            <summary>
+            Gets all nodes existing in this tree/subtree, including
+            this one.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.AllChildren">
+            <summary>
+            Gets all children existing in this tree/subtree, including
+            this one.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.Children">
+            <summary>
+            Gets the children of the current tree node.
+            Cannot be modified, use add/remove instead.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.Depth">
+            <summary>
+            Gets the depth of the node.
+            (i.e. how many levels above exists)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.Height">
+            <summary>
+            Gets the height of the node.
+            (i.e. how many levels of children exists)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.CacheHeight">
+            <summary>
+            Gets or sets the cached height of the node.
+            Use this if you don't wish to recalculate the height of a node.
+            Implemented in Binary Search Trees.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.IsInternalNode">
+            <summary>
+            True if this node has children.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.IsLeafNode">
+            <summary>
+            True if this node has no children.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.IsRootNode">
+            <summary>
+            True if this node is treated as the root of a tree.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.K">
+            <summary>
+            Gets the k-ary ness of the tree.
+            (i.e. the maximum children a node has in this tree/subtree)
+            As a binary tree, it can only be 2-ary.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.NumberOfChildren">
+            <summary>
+            Gets the number of children this node has (max 2).
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.ParentNode">
+            <summary>
+            Gets the node that is the parent to this one.
+            Null if this node is root.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.Siblings">
+            <summary>
+            Gets the number of siblings this node has (either 1 or 0).
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.BinaryTreeNode`1.Size">
+            <summary>
+            Returns the number of nodes in this subtree (including this one)
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Structures.Trees.BinaryTreeNode`1.Value">
+            <summary>
+            The value of the current node.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTreeNode`1.Clone(System.Boolean)">
+            <summary>
+            Clones the current tree node.
+            The new node has no parent.
+            </summary>
+            <param name="deep">
+            If false, then only the reference to the root node is copied.
+            and modifications to the tree are then shared.
+            </param>
+            <returns>a new node, which is an exact copy of this one</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTreeNode`1.Remove(SSDK.Core.Structures.Trees.BinaryTreeNode{`0})">
+            <summary>
+            Removes the given node under this tree, assuming that it exists
+            </summary>
+            <param name="node">the node to remove</param>
+            <returns>-1 if the node did not exist, or the child index (0=left,1=right) of the node</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTreeNode`1.Remove">
+            <summary>
+            Removes this node/subtree from the parent node. Use Tree's removal method to avoid
+            conflicts.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTreeNode`1.SwapValue(SSDK.Core.Structures.Trees.BinaryTreeNode{`0})">
+            <summary>
+            Swaps the values of two nodes.
+            </summary>
+            <param name="node">the other node to swap with</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTreeNode`1.SwapNode(SSDK.Core.Structures.Trees.BinaryTreeNode{`0},SSDK.Core.Structures.Trees.BinaryTreeNode{`0})">
+            <summary>
+            Swaps the two nodes in the structure.
+            
+            </summary>
+            <param name="nodeToSwap">the node to swap out</param>
+            <param name="newNode">the node to swap in</param>
+            <remarks>
+            NOTE: that this operation only modifies the current node, 
+            and they other parent node must also be modified, else
+            cloning may occur.</remarks>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTreeNode`1.TraverseInPreOrder(System.Action{SSDK.Core.Structures.Trees.BinaryTreeNode{`0},System.Int32},System.Func{System.Boolean},System.Int32)">
+            <summary>
+            Performs the given action on every visit to a node, using 
+            pre-order traversal logic.
+            </summary>
+            <param name="traverseAction">the action to apply on every visited node (node, level)</param>
+            <param name="cutoffSelector">a function which returns a boolean indicating the traversal should stop</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTreeNode`1.TraverseInOrder(System.Action{SSDK.Core.Structures.Trees.BinaryTreeNode{`0},System.Int32},System.Int32,System.Func{System.Boolean},System.Int32)">
+            <summary>
+            Performs the given action on every visit to a node, using 
+            in-order traversal logic.
+            </summary>
+            <param name="traverseAction">the action to apply on every visited node (node, level)</param>
+            <param name="cutoffSelector">a function which returns a boolean indicating the traversal should stop</param>
+            <param name="k">the k-ary of the tree (k/2) is where the in-order parent is visited.</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTreeNode`1.TraverseInPostOrder(System.Action{SSDK.Core.Structures.Trees.BinaryTreeNode{`0},System.Int32},System.Func{System.Boolean},System.Int32)">
+            <summary>
+            Performs the given action on every visit to a node, using 
+            post-order traversal logic.
+            </summary>
+            <param name="cutoffSelector">a function which returns a boolean indicating the traversal should stop</param>
+            <param name="traverseAction">the action to apply on every visited node (node, level)</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.BinaryTreeNode`1.TraverseInLevel(System.Action{SSDK.Core.Structures.Trees.BinaryTreeNode{`0},System.Int32},System.Func{System.Int32,System.Boolean},System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Traverses the nodes in pre-order and visits the node if the level selector
+            checks of (e.g. () => 2, visits all nodes in level 2).
+            Uses BFS algorithm.
+            </summary>
+            <param name="traverseAction">the action to apply on every visited node  (w/ level)</param>
+            <param name="levelSelector">the selector which determines which nodes to visit based on level</param>
+        </member>
+        <member name="T:SSDK.Core.Structures.Trees.HeapTree`1">
+            <summary>
+            A heap tree that maintains the root node is the smallest
+            element. Tree nodes in a heap tree must not be modified directly.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Structures.Trees.HeapTree`1.HeapInsertionNode">
+            <summary>
+            The node which contains the parent that the next
+            node must be inserted to.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Structures.Trees.HeapTree`1.HeapRemovalNode">
+            <summary>
+            The node which contains the parent that the next node
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.HeapTree`1.SetRoot(`0)">
+            <summary>
+            Invalid operation.
+            </summary>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.HeapTree`1.Remove">
+            <summary>
+            Removes the root node from the heap, returning the smallest value in the tree.
+            </summary>
+            <returns>a shallow copy of the root node of the tree</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.HeapTree`1.Downheap(SSDK.Core.Structures.Trees.BinaryTreeNode{`0})">
+            <summary>
+            Performs the downheap algorithm on the
+            given node.
+            </summary>
+            <param name="node">the node to order</param>
+        </member>
+        <member name="T:SSDK.Core.Structures.Trees.SplaySearchTree`1">
+            <summary>
+            An AVL tree is a balanced binary search tree
+            (i.e. using the tree's Add and Remove methods, the height
+            of any node in the tree differs by at most one)
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.SplaySearchTree`1.Splay(SSDK.Core.Structures.Trees.BinaryTreeNode{`0})">
+            <summary>
+            Splays the given node to the root.
+            </summary>
+            <param name="x">the node to splay to the root</param>
+        </member>
+        <member name="T:SSDK.Core.Structures.Trees.Tree`1">
+            <summary>
+            A tree is an abstract model of a heirarchical structure, consisting
+            of parent-child relations between nodes. A node can only have one parent,
+            whereas a parent can have multiple children.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.Tree`1.AllNodes">
+            <summary>
+            Gets all nodes existing in this tree
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.Tree`1.Height">
+            <summary>
+            Gets the height of the tree
+            (i.e. the height of the root node)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.Tree`1.IsComplete">
+            <summary>
+            True if all levels of the tree are full, or all levels but
+            the last level is full and all leaves are furthest to the left.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.Tree`1.IsProper">
+            <summary>
+            True if all nodes in this tree except leaf nodes has k children.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.Tree`1.IsEmpty">
+            <summary>
+            True if there exists no nodes in this tree.
+            (i.e. the root node doesn't exist)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.Tree`1.K">
+            <summary>
+            Gets the k-ary ness of the tree.
+            (i.e. the maximum children a node has in this tree)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.Tree`1.MaximumInternalNodes">
+            <summary>
+            Gets the maximum internal nodes of this tree/subtree, assuming
+            the k-ary ness is the same.
+            (i.e. 2^h - 1)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.Tree`1.RootNode">
+            <summary>
+            Gets the root node of this tree.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.Tree`1.Size">
+            <summary>
+            Returns the number of nodes in this tree
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.Tree`1.Clone(System.Boolean)">
+            <summary>
+            Clones the current tree.
+            </summary>
+            <param name="deep">
+            If false, then only the reference to the root node is copied.
+            and modifications to the tree are then shared.
+            </param>
+            <returns>a new tree, which is an exact copy of this tree.</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.Tree`1.Clone(System.Func{SSDK.Core.Structures.Trees.Tree{`0}},System.Boolean)">
+            <summary>
+            Clones the current tree.
+            </summary>
+            <param name="treeType">the tree type constructor</param>
+            <param name="deep">
+            If false, then only the reference to the root node is copied.
+            and modifications to the tree are then shared.
+            </param>
+            <returns>a new tree, which is an exact copy of this tree.</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.Tree`1.Add(`0)">
+            <summary>
+            Adds an element to the tree.
+            </summary>
+            <param name="element">the element to add</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.Tree`1.Remove(SSDK.Core.Structures.Trees.TreeNode{`0})">
+            <summary>
+            Removes an element's node from the tree.
+            </summary>
+            <param name="elementNode">the element node to remove</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.Tree`1.Remove(`0)">
+            <summary>
+            Removes an element from the tree.
+            </summary>
+            <param name="element">the element to remove</param>
+            <returns>the node that was removed, with its references still existing.</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.Tree`1.SetRoot(`0)">
+            <summary>
+            Sets the root of the tree.
+            </summary>
+            <param name="element">the element contained within the root of the tree</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.Tree`1.SetRoot(SSDK.Core.Structures.Trees.TreeNode{`0})">
+            <summary>
+            Sets the root of the tree.
+            </summary>
+            <param name="root">the new root of the tree.</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.Tree`1.TraverseInPreOrder(System.Action{SSDK.Core.Structures.Trees.TreeNode{`0}},System.Func{System.Boolean})">
+            <summary>
+            Performs the given action on every visit to a node, using 
+            pre-order traversal logic.
+            </summary>
+            <param name="traverseAction">the action to apply on every visited node</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.Tree`1.TraverseInOrder(System.Action{SSDK.Core.Structures.Trees.TreeNode{`0}},System.Int32,System.Func{System.Boolean})">
+            <summary>
+            Performs the given action on every visit to a node, using 
+            in-order traversal logic.
+            </summary>
+            <param name="traverseAction">the action to apply on every visited node</param>
+            <param name="k">the k-ary of the tree (k/2) is where the in-order parent is visited.</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.Tree`1.TraverseInPostOrder(System.Action{SSDK.Core.Structures.Trees.TreeNode{`0}},System.Func{System.Boolean})">
+            <summary>
+            Performs the given action on every visit to a node, using 
+            post-order traversal logic.
+            </summary>
+            <param name="traverseAction">the action to apply on every visited node</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.Tree`1.TraverseInLevel(System.Action{SSDK.Core.Structures.Trees.TreeNode{`0},System.Int32},System.Func{System.Int32,System.Boolean},System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Traverses the nodes in pre-order and visits the node if the level selector
+            checks of (e.g. () => 2, visits all nodes in level 2).
+            </summary>
+            <param name="traverseAction">the action to apply on every visited node (w/ level)</param>
+            <param name="levelSelector">the selector which determines which nodes to visit based on level</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.Tree`1.IsLevelFull(System.Int32)">
+            <summary>
+            Returns true if the given level at depth l is full according to k-ary ness.
+            </summary>
+            <param name="level">the level to check</param>
+            <returns>true if the given level is full</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.Tree`1.Search(`0)">
+            <summary>
+            Gets the tree node that contains the element to search for.
+            The current method to search uses an inefficient method.
+            </summary>
+            <param name="searchFor">the element to search for</param>
+            <returns>null if not found, or the element if found.</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.Tree`1.ToBinaryTree(System.Func{SSDK.Core.Structures.Trees.Tree{`0}},System.Boolean)">
+            <summary>
+            Converts this tree to a binary tree, assuming k=2
+            </summary>
+            <param name="treeType">a constructor for the tree type</param>
+            <returns>null if invalid tree, else the resulting tree</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.Tree`1.AddBinaryNode(SSDK.Core.Structures.Trees.TreeNode{`0},SSDK.Core.Structures.Trees.TreeNode{`0},SSDK.Core.Structures.Trees.TreeNode{`0},System.Boolean)">
+            <summary>
+            Adds a given node to the binary tree node, returning false if
+            the number of children exceeds two.
+            </summary>
+            <param name="to">the node to add itself to</param>
+            <param name="node"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.IsLeft">
+            <summary>
+            True if this node is the left descendent of the parent.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.IsRight">
+            <summary>
+            True if this node is the right descendent of the parent.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.Left">
+            <summary>
+            Gets or sets the left-side child assuming k=2
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.LeftMostNode">
+            <summary>
+            Gets the left-most node (i.e. travelling left as much as possible)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.Right">
+            <summary>
+            Gets or sets the right-side child assuming k=2
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.RightMostNode">
+            <summary>
+            Gets the right-most node (i.e. travelling right as much as possible)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.Sibling">
+            <summary>
+            Gets the opposing sibling in a binary tree.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.AllNodes">
+            <summary>
+            Gets all nodes existing in this tree/subtree, including
+            this one.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.AllChildren">
+            <summary>
+            Gets all children existing in this tree/subtree, including
+            this one.
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Structures.Trees.TreeNode`1._Children">
+            <summary>
+            The children of the current node.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.Children">
+            <summary>
+            Gets the children of the current tree node.
+            Cannot be modified, use add/remove instead.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.Depth">
+            <summary>
+            Gets the depth of the node.
+            (i.e. how many levels above exists)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.Height">
+            <summary>
+            Gets the height of the node.
+            (i.e. how many levels of children exists)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.IsInternalNode">
+            <summary>
+            True if this node has children.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.IsLeafNode">
+            <summary>
+            True if this node has no children.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.IsRootNode">
+            <summary>
+            True if this node is treated as the root of a tree.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.K">
+            <summary>
+            Gets the k-ary ness of the tree.
+            (i.e. the maximum children a node has in this tree/subtree)
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.NumberOfChildren">
+            <summary>
+            Gets the number of children this node has.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.ParentNode">
+            <summary>
+            Gets the node that is the parent to this one.
+            Null if this node is root.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.Siblings">
+            <summary>
+            Gets the number of siblings this node has
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Trees.TreeNode`1.Size">
+            <summary>
+            Returns the number of nodes in this subtree (including this one)
+            </summary>
+        </member>
+        <member name="F:SSDK.Core.Structures.Trees.TreeNode`1.Value">
+            <summary>
+            The value of the current node.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.TreeNode`1.Clone(System.Boolean)">
+            <summary>
+            Clones the current tree node.
+            The new node has no parent.
+            </summary>
+            <param name="deep">
+            If false, then only the reference to the root node is copied.
+            and modifications to the tree are then shared.
+            </param>
+            <returns>a new node, which is an exact copy of this one</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.TreeNode`1.Add(SSDK.Core.Structures.Trees.TreeNode{`0},System.Int32)">
+            <summary>
+            Adds a node under this tree.
+            </summary>
+            <param name="node">the node to add</param>
+            <param name="insertPosition">the position to insert to (-1 if at end)</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.TreeNode`1.Remove(SSDK.Core.Structures.Trees.TreeNode{`0})">
+            <summary>
+            Removes the given node under this tree, assuming that it exists
+            </summary>
+            <param name="node">the node to remove</param>
+            <returns>-1 if the node did not exist, or the child index of the node</returns>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.TreeNode`1.Remove">
+            <summary>
+            Removes this node/subtree from the parent node. Use Tree's removal method to avoid
+            conflicts.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.TreeNode`1.SwapValue(SSDK.Core.Structures.Trees.TreeNode{`0})">
+            <summary>
+            Swaps the values of two nodes.
+            </summary>
+            <param name="node">the other node to swap with</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.TreeNode`1.TraverseInPreOrder(System.Action{SSDK.Core.Structures.Trees.TreeNode{`0}},System.Func{System.Boolean})">
+            <summary>
+            Performs the given action on every visit to a node, using 
+            pre-order traversal logic.
+            </summary>
+            <param name="traverseAction">the action to apply on every visited node</param>
+            <param name="cutoffSelector">a function which returns a boolean indicating the traversal should stop</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.TreeNode`1.TraverseInOrder(System.Action{SSDK.Core.Structures.Trees.TreeNode{`0}},System.Int32,System.Func{System.Boolean})">
+            <summary>
+            Performs the given action on every visit to a node, using 
+            in-order traversal logic.
+            </summary>
+            <param name="traverseAction">the action to apply on every visited node</param>
+            <param name="cutoffSelector">a function which returns a boolean indicating the traversal should stop</param>
+            <param name="k">the k-ary of the tree (k/2) is where the in-order parent is visited.</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.TreeNode`1.TraverseInPostOrder(System.Action{SSDK.Core.Structures.Trees.TreeNode{`0}},System.Func{System.Boolean})">
+            <summary>
+            Performs the given action on every visit to a node, using 
+            post-order traversal logic.
+            </summary>
+            <param name="cutoffSelector">a function which returns a boolean indicating the traversal should stop</param>
+            <param name="traverseAction">the action to apply on every visited node</param>
+        </member>
+        <member name="M:SSDK.Core.Structures.Trees.TreeNode`1.TraverseInLevel(System.Action{SSDK.Core.Structures.Trees.TreeNode{`0},System.Int32},System.Func{System.Int32,System.Boolean},System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Traverses the nodes in pre-order and visits the node if the level selector
+            checks of (e.g. () => 2, visits all nodes in level 2).
+            Uses BFS algorithm.
+            </summary>
+            <param name="traverseAction">the action to apply on every visited node  (w/ level)</param>
+            <param name="levelSelector">the selector which determines which nodes to visit based on level</param>
+        </member>
+    </members>
+</doc>

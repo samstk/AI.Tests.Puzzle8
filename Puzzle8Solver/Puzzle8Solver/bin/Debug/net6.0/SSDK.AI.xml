@@ -1,0 +1,533 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SSDK.AI</name>
+    </assembly>
+    <members>
+        <member name="T:SSDK.AI.Agent">
+            <summary>
+            The base for every AI agent, with the aim to produce 'intelligence' using a generic model,
+            that be modified to use different algorithms for solve a problem.
+            
+            A generic agent is made up of the following components:
+            (A) Action Space which is the set of all possible actions the agent can perform.
+            (B) Problem Space, which contains the current state of the world the agent can perceive,
+                               the desired state of the world the agent wants to be in.
+            (C) Agent solver,  which takes the problem space and turns it into a sequence of operations
+                               of the action space.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.Agent.ActionSpace">
+            <summary>
+            Gets the action space, which contains the set of all possible operations the
+            agent can perform.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.Agent.Solver">
+            <summary>
+            The solver which attempts to solve the problem of this agent with one or more algorithms.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.Agent.CurrentOperation">
+            <summary>
+            The current operation that the agent is undertaking to achieve said
+            desired space.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.Agent.CurrentProblemSpace">
+            <summary>
+            Gets the current problem space, which contains what the agent can perceive, and
+            methods to predict for some operations.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.Agent.DesiredProblemSpace">
+            <summary>
+            Gets or sets the desired problem space, which contains what the agent wants to perceive.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.Agent.ProblemDivisionQueue">
+            <summary>
+            Gets the queue of desired problem spaces.
+            When using the guide function, it populates this queue so that
+            our desired spaces are reached sequentially.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.Agent.#ctor(SSDK.AI.AgentActionSpace,SSDK.AI.AgentProblemSpace,SSDK.AI.AgentSolver)">
+            <summary>
+            Constructs an agent for the sole purpose of deploying actions in the action space,
+            to solve the problem defined in the problem space.
+            </summary>
+            <param name="actionSpace">the space containing the set of all possible actions the agent can perform</param>
+            <param name="problem">the problem which the agent has initially</param>
+            <param name="solver">a solver for th a</param>
+        </member>
+        <member name="M:SSDK.AI.Agent.Guide(SSDK.AI.AgentProblemSpace[])">
+            <summary>
+            Guides the agent into desiring a certain state first before finally reaching the desired space.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.Agent.Solve">
+            <summary>
+            Update the agent along-side the perception of the world, and attempt
+            to solve the problem the agent currently faces. If no desired problem space is defined,
+            then it will do nothing.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.Agent.Execute">
+            <summary>
+            Attempts to execute or continue the current operation if it exists.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.Agent.ExecuteAll">
+            <summary>
+            Attempts to completely execute (finish) the current operation if it exists.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.Agent.UpdateProblem(SSDK.AI.AgentProblemSpace)">
+            <summary>
+            Updates the current problem space.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.Agent.UpdateProblemUsingPrediction(SSDK.AI.AgentOperation)">
+            <summary>
+            Updates the current problem space, by branching from the current space
+            by using prediction of what a given operation will do to the space.
+            </summary>
+            <param name="operation">the operation to predict from</param>
+        </member>
+        <member name="M:SSDK.AI.Agent.UpdateProblemUsingPrediction(System.Int32)">
+            <summary>
+            Updates the current problem space, by branching from the current space
+            by using prediction of what a given operation will do to the space.
+            </summary>
+            <param name="type">
+            the operation action type which may be picked up in the problem space to indicate
+            a specific action to take.
+            </param>
+        </member>
+        <member name="T:SSDK.AI.AgentAction">
+            <summary>
+            An action which can be activated to a certain range.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentAction.Name">
+            <summary>
+            Name for the action for references purposes.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentAction.MinRange">
+            <summary>
+            Gets the min action target for this operation (default is zero)
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentAction.MaxRange">
+            <summary>
+            Gets the max action target for this operation (default is one).
+            Inclusive.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentAction.Action">
+            <summary>
+            Gets the action handler that performs the action on the agent's
+            world, using an integer to specify an argument.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentAction.Cost">
+            <summary>
+            Gets the cost calculation which may be used on certain solvers
+            to determine best paths.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.AgentAction.#ctor(System.Action{SSDK.AI.Agent,System.Int32},System.Func{SSDK.AI.Agent,System.Int32,System.Double},System.Int32,System.Int32)">
+            <summary>
+            Defines a new agent operation which takes an action handler, and allows
+            a certain range of values from (min-max) inclusive, to be passed to the 
+            handler every solution.
+            </summary>
+            <param name="actionHandler">
+            the action handler that performs the action on the agent's
+            world, using an integer to specify an argument.
+            </param>
+            <param name="costHandler">
+            the cost calculation function that takes the agent, a target within min-max,
+            and returns the estimated cost to perform the action.
+            </param>
+            <param name="minRange">the min target integer</param>
+            <param name="maxRange">the max target integer inclusive</param>
+        </member>
+        <member name="T:SSDK.AI.AgentPromptFunction">
+            <summary>
+            A function which determines whether the agent can perform an action yet.
+            </summary>
+            <param name="agent">the agent to test</param>
+            <param name="action">the action to check</param>
+            <returns>true if the action can be performed</returns>
+        </member>
+        <member name="T:SSDK.AI.AgentActionExecution">
+            <summary>
+            Depicts an execution of a particular action
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentActionExecution.Action">
+            <summary>
+            The action that will be performed on the target.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentActionExecution.Prompt">
+            <summary>
+            The prompt that determines
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentActionExecution.Target">
+            <summary>
+            The target in which the action is to be performed to.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentActionExecution.Active">
+            <summary>
+            Gets or sets whether this execution should be checked
+            or performed.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.AgentActionExecution.#ctor(SSDK.AI.AgentAction,System.Int32,SSDK.AI.AgentPromptFunction)">
+            <summary>
+            Creates information for an execution of the action
+            </summary>
+            <param name="agent">the agent that this action is performed on</param>
+            <param name="action">the action that is going to be performed</param>
+            <param name="target">the target argument of the action</param>
+            <param name="prompt">the prompt function which determines if this can be executed</param>
+        </member>
+        <member name="M:SSDK.AI.AgentActionExecution.Execute(SSDK.AI.Agent)">
+            <summary>
+            Executes on the current agent using the target on the set action.
+            </summary>
+            <returns>true if the action could be executed</returns>
+        </member>
+        <member name="M:SSDK.AI.AgentActionExecution.Clone(System.Boolean)">
+            <summary>
+            Returns a perfect clone of this execution
+            </summary>
+            <param name="asActive">if true, the clone is set to active</param>
+            <returns>the clone of the object</returns>
+        </member>
+        <member name="T:SSDK.AI.AgentActionSpace">
+            <summary>
+            The action space contains the set all possible actions the agent can perform.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentActionSpace.Actions">
+            <summary>
+            The set of all actions that an agent of a type can perform
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentActionSpace.AllSingleStepOperations">
+            <summary>
+            Gets a list of all single step operations that can be found
+            from this action space. <br/>
+            Assumes that an integer can stored the features as a binary representation
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentActionSpace.AllowWait">
+            <summary>
+            If true, then certain solvers not necessarily perform at least one action.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.AgentActionSpace.#ctor(SSDK.AI.AgentAction[])">
+            <summary>
+            Creates a new action space with a given set of predefined actions.
+            If multiple actions exist, then it suggests that 
+            </summary>
+            <param name="actions">
+            the actions that an agent can do. 
+            If the agent must choose between a number of actions, 
+            then use a single AgentAction with different target ranges to achieve this.
+            </param>
+        </member>
+        <member name="T:SSDK.AI.AgentOperation">
+            <summary>
+            An agent's operation, which may have multiple sequences
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentOperation.TimeStarted">
+            <summary>
+            The time in which the operation started execution.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentOperation.TimePaused">
+            <summary>
+            If at any point the operation has been paused, then
+            this depicts the time at which it was paused.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentOperation.ActionType">
+            <summary>
+            The integer argument of the operation.
+            If using Agent.UpdateProblemUsingPrediction whilst using
+            an integer to specific a type of action, then this will be 
+            set to that integer.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentOperation.Steps">
+            <summary>
+            The steps of the execution which must run in sequence.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.AgentOperation.#ctor">
+            <summary>
+            Creates an empty agent operation
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.AgentOperation.#ctor(SSDK.AI.AgentOperationStep[])">
+            <summary>
+            Creates an agent operation with the given steps.
+            </summary>
+            <param name="steps">the steps of the opreation</param>
+        </member>
+        <member name="P:SSDK.AI.AgentOperation.Status">
+            <summary>
+            The status of the operation
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentOperation.CurrentStep">
+            <summary>
+            The index of the current step of the operation.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.AgentOperation.AsSingle">
+            <summary>
+            Gets the single operation target, assuming that the number of steps is one.
+            </summary>
+            <returns>-1 if empty operation, or the target of the first execution first</returns>
+        </member>
+        <member name="M:SSDK.AI.AgentOperation.Merge(SSDK.AI.AgentOperation)">
+            <summary>
+            Merges the other operation into this operation, by appending the other operations steps
+            to this.
+            </summary>
+            <param name="endWithOperation">the operation to end with</param>
+        </member>
+        <member name="M:SSDK.AI.AgentOperation.Reverse">
+            <summary>
+            Reverses the steps in the current operation.
+            Some algorithms require this as they backtrack to find the path.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.AgentOperation.Execute(SSDK.AI.Agent)">
+            <summary>
+            Continues the execution of the operation as normal. 
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.AgentOperation.ExecuteAll(SSDK.AI.Agent)">
+            <summary>
+            Completes the execution of the operation immediately, ignoring time steps. 
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentOperation.IsReady">
+            <summary>
+            True if the operation is ready to be executed.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.AgentOperation.AsNew">
+            <summary>
+            Returns a new operation with the exact details as this one.
+            </summary>
+            <returns>a clone of this operation</returns>
+        </member>
+        <member name="M:SSDK.AI.AgentOperation.Pause">
+            <summary>
+            Pauses the operation entirely.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.AgentOperation.Single(System.Int32)">
+            <summary>
+            Creates an operation from a single vague action type.
+            </summary>
+            <param name="actionType">an action type which may be intepreted by the problem space.</param>
+            <returns>the operation representing the action type</returns>
+        </member>
+        <member name="M:SSDK.AI.AgentOperation.Single(SSDK.AI.AgentActionExecution)">
+            <summary>
+            Creates an operation from a single execution.
+            </summary>
+            <param name="singleExecution">the execution that represents this operation</param>
+            <returns>the operation representing the execution</returns>
+        </member>
+        <member name="T:SSDK.AI.AgentOperationStatus">
+            <summary>
+            Depicts the status of an operation
+            </summary>
+        </member>
+        <member name="F:SSDK.AI.AgentOperationStatus.Scheduled">
+            <summary>
+            Depicts that the operation has not yet been started, but it
+            is either scheduled or for planning purposes.
+            </summary>
+        </member>
+        <member name="F:SSDK.AI.AgentOperationStatus.Running">
+            <summary>
+            Depicts that the operation is currently being executed, but 
+            hasn't finished yet.
+            </summary>
+        </member>
+        <member name="F:SSDK.AI.AgentOperationStatus.Finished">
+            <summary>
+            Depicts that the operation is finished entirely, and should
+            be disposed.
+            </summary>
+        </member>
+        <member name="F:SSDK.AI.AgentOperationStatus.Paused">
+            <summary>
+            Depicts that the operation is currently paused.
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.AgentOperationStep">
+            <summary>
+            Depicts a step in the agent's operation, with reference to time.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentOperationStep.Time">
+            <summary>
+            Gets or sets the time this step should be performed at.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentOperationStep.Executions">
+            <summary>
+            The actions that must be performed in sequence in as little
+            time as possible.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.AgentOperationStep.#ctor(System.Int32,SSDK.AI.AgentActionExecution[])">
+            <summary>
+            Create a new step in any operation with the given time to execute, and
+            action executions.
+            </summary>
+            <param name="time">the time in ms to execute relative to the operation start</param>
+            <param name="executions">the execution specifications of the actions</param>
+        </member>
+        <member name="M:SSDK.AI.AgentOperationStep.AsSingle">
+            <summary>
+            Gets the single execution target, assuming that the number of steps is one.
+            </summary>
+            <returns>-1 if empty step, or the target of the first execution</returns>
+        </member>
+        <member name="M:SSDK.AI.AgentOperationStep.AsNew">
+            <summary>
+            Returns a new operation step with the exact details as this one.
+            </summary>
+            <returns>a clone of this operation step</returns>
+        </member>
+        <member name="M:SSDK.AI.AgentOperationStep.Execute(SSDK.AI.Agent)">
+            <summary>
+            Executes all active executions
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SSDK.AI.AgentProblemSpace">
+            <summary>
+            An abstract class that provides the bare minimum on how an agent perceives the
+            world.
+            
+            Extended class must implement the Perceive and Predict function which returns a
+            new problem space.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.AgentProblemSpace.MatchTolerance">
+            <summary>
+            The match tolerance for equals on this problem space.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.AgentProblemSpace.Perceive(SSDK.AI.Agent)">
+            <summary>
+            Perceives the world that the agent lives in to the agent's perspective.
+            If this problem space is used to represent the world in its entirely, then
+            leave as empty function.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.AgentProblemSpace.DistanceTo(SSDK.AI.AgentProblemSpace)">
+            <summary>
+            Calculates the distance between two problem states. May be used in some algorithms
+            to determine desirable actions.
+            </summary>
+            <param name="space">the state to distantiate</param>
+            <returns>the real number indicating a distance to the other state from this state</returns>
+        </member>
+        <member name="M:SSDK.AI.AgentProblemSpace.Desirability(SSDK.AI.Agent)">
+            <summary>
+            Calculates the desirability of this problem space.
+            </summary>
+            <returns>
+            a value between 0 - 100% (0.0-1.0) representing how desirable this state is.
+            At 100%, the agent assumes that it achieved perfection for the goal.
+            </returns>
+        </member>
+        <member name="M:SSDK.AI.AgentProblemSpace.Predict(SSDK.AI.Agent,SSDK.AI.AgentOperation)">
+            <summary>
+            Predicts the effect of an operation on a specific agent, returning the new
+            problem space.
+            </summary>
+            <param name="agent"></param>
+            <param name="operation"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SSDK.AI.AgentSolver">
+            <summary>
+            An agent solver depicts an algorithm for a tick of an agent's operation.
+            It also provides methods on how to account for new problems. A new instance
+            of a solver should be initiated for every agent to avoid preprocessing errors.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.AgentSolver.UpdateProblem(SSDK.AI.Agent)">
+            <summary>
+            Updates the solver's memory to account for the new problem as per 
+            agent.UpdateProblem.
+            </summary>
+            <param name="agent">the agent that needs solving</param>
+        </member>
+        <member name="M:SSDK.AI.AgentSolver.Solve(SSDK.AI.Agent)">
+            <summary>
+            Attempts to solve the agent's current problem.
+            </summary>
+            <param name="agent">the agent that needs solving</param>
+            <returns>an operation on the agent, which should lead to the desired state</returns>
+        </member>
+        <member name="M:SSDK.AI.AgentSolver.Check(SSDK.AI.Agent,SSDK.AI.AgentOperation)">
+            <summary>
+            Checks to make sure that the operation will lead to the agent's desired space.
+            </summary>
+            <param name="agent">the agent that needs solving</param>
+            <param name="operation">the current operation of the agent</param>
+            <returns>true if there are no problems with the operation</returns>
+        </member>
+        <member name="T:SSDK.AI.Solvers.BFSSolver">
+            <summary>
+            Depicts a BFS solver for an AI agent.
+            <br/>
+            BFS has the following: <br/>
+            * To be used for solving a problem all at once (resulting in a set of subsequently achievable states) <br/>
+            * All problem spaces must contain a reference to the desired space <br/>
+            * Assumes that actions are deterministic <br/>
+            * Requires Hash and Equals to be implemented in problem space <br/>
+            + Shortest path detection with no action cost <br/>
+            + Perfect rationality but heavy memory consumption for every state <br/>
+            - Heavy memory consumption for exponential states   <br/>
+            - Depends on exact state computation <br/>
+            - Desirability of a state has no effect on computation 
+            </summary>
+        </member>
+        <member name="F:SSDK.AI.Solvers.BFSSolver.MatchTolerance">
+            <summary>
+            The tolerance in which a state is said to be the same in BFS.
+            If set to 0, then the distance from one state to another to be the same must be 0.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.Solvers.BFSSolver.Solve(SSDK.AI.Agent)">
+            <summary>
+            Solves the agent by using BFS to generate an operation that computes
+            the closest path which accounting for action costs.
+            </summary>
+            <param name="agent">the agent to solve</param>
+            <returns>an operation attempts to lead the agent to the desired space</returns>
+        </member>
+    </members>
+</doc>

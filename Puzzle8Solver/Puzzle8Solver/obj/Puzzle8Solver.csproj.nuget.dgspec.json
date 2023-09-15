@@ -1,0 +1,199 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\AI.Tests.Puzzle8\\Puzzle8Solver\\Puzzle8Solver\\Puzzle8Solver.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\AI.Tests.Puzzle8\\Puzzle8Solver\\Puzzle8Solver\\Puzzle8Solver.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\AI.Tests.Puzzle8\\Puzzle8Solver\\Puzzle8Solver\\Puzzle8Solver.csproj",
+        "projectName": "Puzzle8Solver",
+        "projectPath": "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\AI.Tests.Puzzle8\\Puzzle8Solver\\Puzzle8Solver\\Puzzle8Solver.csproj",
+        "packagesPath": "C:\\Users\\samst\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\AI.Tests.Puzzle8\\Puzzle8Solver\\Puzzle8Solver\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\samst\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.AI\\SSDK.AI.csproj": {
+                "projectPath": "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.AI\\SSDK.AI.csproj"
+              },
+              "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.Core\\SSDK.Core\\SSDK.Core.csproj": {
+                "projectPath": "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.Core\\SSDK.Core\\SSDK.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.AI\\SSDK.AI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.AI\\SSDK.AI.csproj",
+        "projectName": "SSDK.AI",
+        "projectPath": "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.AI\\SSDK.AI.csproj",
+        "packagesPath": "C:\\Users\\samst\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.AI\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\samst\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.Core\\SSDK.Core\\SSDK.Core.csproj": {
+                "projectPath": "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.Core\\SSDK.Core\\SSDK.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.Core\\SSDK.Core\\SSDK.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.Core\\SSDK.Core\\SSDK.Core.csproj",
+        "projectName": "SSDK.Core",
+        "projectPath": "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.Core\\SSDK.Core\\SSDK.Core.csproj",
+        "packagesPath": "C:\\Users\\samst\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.Core\\SSDK.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\samst\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
