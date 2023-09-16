@@ -716,6 +716,28 @@
             Gets or sets the value associated with this vertex
             </summary>
         </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphVertex`1.LeadingWeight">
+            <summary>
+            Gets or sets the number that represents this vertex.
+            Used in frontier/expansion algorithms to store the current distance of a 
+            certain vertex.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphVertex`1.SecondaryWeight">
+            <summary>
+            Gets or sets the secondary number that represents this vertex.
+            Used in frontier/expansion algorithms to store the distance to achieve
+            a vertex, while the leading weight is the distance to reach this vertex.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Structures.Graphs.GraphVertex`1.LeadingEdge">
+            <summary>
+            Gets or sets the edge which is best preferred to enter this
+            vertex.
+            Used in frontier/expansion algorithms to store the edge resulting in a 
+            minimum distance during a expansion.
+            </summary>
+        </member>
         <member name="P:SSDK.Core.Structures.Graphs.GraphVertex`1.HasEdgesFrom">
             <summary>
             Returns true if this vertex has edges leading from it.

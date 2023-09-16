@@ -4,7 +4,7 @@
         <name>SSDK.AI</name>
     </assembly>
     <members>
-        <member name="T:SSDK.AI.Agent">
+        <member name="T:SSDK.AI.Agent.Agent">
             <summary>
             The base for every AI agent, with the aim to produce 'intelligence' using a generic model,
             that be modified to use different algorithms for solve a problem.
@@ -17,42 +17,42 @@
                                of the action space.
             </summary>
         </member>
-        <member name="P:SSDK.AI.Agent.ActionSpace">
+        <member name="P:SSDK.AI.Agent.Agent.ActionSpace">
             <summary>
             Gets the action space, which contains the set of all possible operations the
             agent can perform.
             </summary>
         </member>
-        <member name="P:SSDK.AI.Agent.Solver">
+        <member name="P:SSDK.AI.Agent.Agent.Solver">
             <summary>
             The solver which attempts to solve the problem of this agent with one or more algorithms.
             </summary>
         </member>
-        <member name="P:SSDK.AI.Agent.CurrentOperation">
+        <member name="P:SSDK.AI.Agent.Agent.CurrentOperation">
             <summary>
             The current operation that the agent is undertaking to achieve said
             desired space.
             </summary>
         </member>
-        <member name="P:SSDK.AI.Agent.CurrentProblemSpace">
+        <member name="P:SSDK.AI.Agent.Agent.CurrentProblemSpace">
             <summary>
             Gets the current problem space, which contains what the agent can perceive, and
             methods to predict for some operations.
             </summary>
         </member>
-        <member name="P:SSDK.AI.Agent.DesiredProblemSpace">
+        <member name="P:SSDK.AI.Agent.Agent.DesiredProblemSpace">
             <summary>
             Gets or sets the desired problem space, which contains what the agent wants to perceive.
             </summary>
         </member>
-        <member name="P:SSDK.AI.Agent.ProblemDivisionQueue">
+        <member name="P:SSDK.AI.Agent.Agent.ProblemDivisionQueue">
             <summary>
             Gets the queue of desired problem spaces.
             When using the guide function, it populates this queue so that
             our desired spaces are reached sequentially.
             </summary>
         </member>
-        <member name="M:SSDK.AI.Agent.#ctor(SSDK.AI.AgentActionSpace,SSDK.AI.AgentProblemSpace,SSDK.AI.AgentSolver)">
+        <member name="M:SSDK.AI.Agent.Agent.#ctor(SSDK.AI.Agent.AgentActionSpace,SSDK.AI.Agent.AgentProblemSpace,SSDK.AI.Agent.AgentSolver)">
             <summary>
             Constructs an agent for the sole purpose of deploying actions in the action space,
             to solve the problem defined in the problem space.
@@ -61,41 +61,41 @@
             <param name="problem">the problem which the agent has initially</param>
             <param name="solver">a solver for th a</param>
         </member>
-        <member name="M:SSDK.AI.Agent.Guide(SSDK.AI.AgentProblemSpace[])">
+        <member name="M:SSDK.AI.Agent.Agent.Guide(SSDK.AI.Agent.AgentProblemSpace[])">
             <summary>
             Guides the agent into desiring a certain state first before finally reaching the desired space.
             </summary>
         </member>
-        <member name="M:SSDK.AI.Agent.Solve">
+        <member name="M:SSDK.AI.Agent.Agent.Solve">
             <summary>
             Update the agent along-side the perception of the world, and attempt
             to solve the problem the agent currently faces. If no desired problem space is defined,
             then it will do nothing.
             </summary>
         </member>
-        <member name="M:SSDK.AI.Agent.Execute">
+        <member name="M:SSDK.AI.Agent.Agent.Execute">
             <summary>
             Attempts to execute or continue the current operation if it exists.
             </summary>
         </member>
-        <member name="M:SSDK.AI.Agent.ExecuteAll">
+        <member name="M:SSDK.AI.Agent.Agent.ExecuteAll">
             <summary>
             Attempts to completely execute (finish) the current operation if it exists.
             </summary>
         </member>
-        <member name="M:SSDK.AI.Agent.UpdateProblem(SSDK.AI.AgentProblemSpace)">
+        <member name="M:SSDK.AI.Agent.Agent.UpdateProblem(SSDK.AI.Agent.AgentProblemSpace)">
             <summary>
             Updates the current problem space.
             </summary>
         </member>
-        <member name="M:SSDK.AI.Agent.UpdateProblemUsingPrediction(SSDK.AI.AgentOperation)">
+        <member name="M:SSDK.AI.Agent.Agent.UpdateProblemUsingPrediction(SSDK.AI.Agent.AgentOperation)">
             <summary>
             Updates the current problem space, by branching from the current space
             by using prediction of what a given operation will do to the space.
             </summary>
             <param name="operation">the operation to predict from</param>
         </member>
-        <member name="M:SSDK.AI.Agent.UpdateProblemUsingPrediction(System.Int32)">
+        <member name="M:SSDK.AI.Agent.Agent.UpdateProblemUsingPrediction(System.Int32)">
             <summary>
             Updates the current problem space, by branching from the current space
             by using prediction of what a given operation will do to the space.
@@ -105,40 +105,55 @@
             a specific action to take.
             </param>
         </member>
-        <member name="T:SSDK.AI.AgentAction">
+        <member name="T:SSDK.AI.Agent.AgentActionHandler">
+            <summary>
+            The action handler which handles the given target of the action.
+            </summary>
+            <param name="agent">the agent to perform the action on</param>
+            <param name="target">the target of the action (within min-max)</param>
+        </member>
+        <member name="T:SSDK.AI.Agent.AgentCostFunction">
+            <summary>
+            The cost handler which calculates the cost of the given action.
+            </summary>
+            <param name="agent">the agent to perform the action on</param>
+            <param name="target">the target of the action (within min-max)</param>
+            <returns>the 'cost' of the action</returns>
+        </member>
+        <member name="T:SSDK.AI.Agent.AgentAction">
             <summary>
             An action which can be activated to a certain range.
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentAction.Name">
+        <member name="P:SSDK.AI.Agent.AgentAction.Name">
             <summary>
             Name for the action for references purposes.
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentAction.MinRange">
+        <member name="P:SSDK.AI.Agent.AgentAction.MinRange">
             <summary>
             Gets the min action target for this operation (default is zero)
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentAction.MaxRange">
+        <member name="P:SSDK.AI.Agent.AgentAction.MaxRange">
             <summary>
             Gets the max action target for this operation (default is one).
             Inclusive.
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentAction.Action">
+        <member name="P:SSDK.AI.Agent.AgentAction.Action">
             <summary>
             Gets the action handler that performs the action on the agent's
             world, using an integer to specify an argument.
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentAction.Cost">
+        <member name="P:SSDK.AI.Agent.AgentAction.Cost">
             <summary>
             Gets the cost calculation which may be used on certain solvers
             to determine best paths.
             </summary>
         </member>
-        <member name="M:SSDK.AI.AgentAction.#ctor(System.Action{SSDK.AI.Agent,System.Int32},System.Func{SSDK.AI.Agent,System.Int32,System.Double},System.Int32,System.Int32)">
+        <member name="M:SSDK.AI.Agent.AgentAction.#ctor(SSDK.AI.Agent.AgentActionHandler,SSDK.AI.Agent.AgentCostFunction,System.Int32,System.Int32)">
             <summary>
             Defines a new agent operation which takes an action handler, and allows
             a certain range of values from (min-max) inclusive, to be passed to the 
@@ -155,7 +170,7 @@
             <param name="minRange">the min target integer</param>
             <param name="maxRange">the max target integer inclusive</param>
         </member>
-        <member name="T:SSDK.AI.AgentPromptFunction">
+        <member name="T:SSDK.AI.Agent.AgentPromptFunction">
             <summary>
             A function which determines whether the agent can perform an action yet.
             </summary>
@@ -163,33 +178,33 @@
             <param name="action">the action to check</param>
             <returns>true if the action can be performed</returns>
         </member>
-        <member name="T:SSDK.AI.AgentActionExecution">
+        <member name="T:SSDK.AI.Agent.AgentActionExecution">
             <summary>
             Depicts an execution of a particular action
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentActionExecution.Action">
+        <member name="P:SSDK.AI.Agent.AgentActionExecution.Action">
             <summary>
             The action that will be performed on the target.
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentActionExecution.Prompt">
+        <member name="P:SSDK.AI.Agent.AgentActionExecution.Prompt">
             <summary>
             The prompt that determines
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentActionExecution.Target">
+        <member name="P:SSDK.AI.Agent.AgentActionExecution.Target">
             <summary>
             The target in which the action is to be performed to.
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentActionExecution.Active">
+        <member name="P:SSDK.AI.Agent.AgentActionExecution.Active">
             <summary>
             Gets or sets whether this execution should be checked
             or performed.
             </summary>
         </member>
-        <member name="M:SSDK.AI.AgentActionExecution.#ctor(SSDK.AI.AgentAction,System.Int32,SSDK.AI.AgentPromptFunction)">
+        <member name="M:SSDK.AI.Agent.AgentActionExecution.#ctor(SSDK.AI.Agent.AgentAction,System.Int32,SSDK.AI.Agent.AgentPromptFunction)">
             <summary>
             Creates information for an execution of the action
             </summary>
@@ -198,42 +213,42 @@
             <param name="target">the target argument of the action</param>
             <param name="prompt">the prompt function which determines if this can be executed</param>
         </member>
-        <member name="M:SSDK.AI.AgentActionExecution.Execute(SSDK.AI.Agent)">
+        <member name="M:SSDK.AI.Agent.AgentActionExecution.Execute(SSDK.AI.Agent.Agent)">
             <summary>
             Executes on the current agent using the target on the set action.
             </summary>
             <returns>true if the action could be executed</returns>
         </member>
-        <member name="M:SSDK.AI.AgentActionExecution.Clone(System.Boolean)">
+        <member name="M:SSDK.AI.Agent.AgentActionExecution.Clone(System.Boolean)">
             <summary>
             Returns a perfect clone of this execution
             </summary>
             <param name="asActive">if true, the clone is set to active</param>
             <returns>the clone of the object</returns>
         </member>
-        <member name="T:SSDK.AI.AgentActionSpace">
+        <member name="T:SSDK.AI.Agent.AgentActionSpace">
             <summary>
             The action space contains the set all possible actions the agent can perform.
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentActionSpace.Actions">
+        <member name="P:SSDK.AI.Agent.AgentActionSpace.Actions">
             <summary>
             The set of all actions that an agent of a type can perform
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentActionSpace.AllSingleStepOperations">
+        <member name="P:SSDK.AI.Agent.AgentActionSpace.AllSingleStepOperations">
             <summary>
             Gets a list of all single step operations that can be found
             from this action space. <br/>
             Assumes that an integer can stored the features as a binary representation
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentActionSpace.AllowWait">
+        <member name="P:SSDK.AI.Agent.AgentActionSpace.AllowWait">
             <summary>
             If true, then certain solvers not necessarily perform at least one action.
             </summary>
         </member>
-        <member name="M:SSDK.AI.AgentActionSpace.#ctor(SSDK.AI.AgentAction[])">
+        <member name="M:SSDK.AI.Agent.AgentActionSpace.#ctor(SSDK.AI.Agent.AgentAction[])">
             <summary>
             Creates a new action space with a given set of predefined actions.
             If multiple actions exist, then it suggests that 
@@ -244,23 +259,23 @@
             then use a single AgentAction with different target ranges to achieve this.
             </param>
         </member>
-        <member name="T:SSDK.AI.AgentOperation">
+        <member name="T:SSDK.AI.Agent.AgentOperation">
             <summary>
             An agent's operation, which may have multiple sequences
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentOperation.TimeStarted">
+        <member name="P:SSDK.AI.Agent.AgentOperation.TimeStarted">
             <summary>
             The time in which the operation started execution.
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentOperation.TimePaused">
+        <member name="P:SSDK.AI.Agent.AgentOperation.TimePaused">
             <summary>
             If at any point the operation has been paused, then
             this depicts the time at which it was paused.
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentOperation.ActionType">
+        <member name="P:SSDK.AI.Agent.AgentOperation.ActionType">
             <summary>
             The integer argument of the operation.
             If using Agent.UpdateProblemUsingPrediction whilst using
@@ -268,136 +283,142 @@
             set to that integer.
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentOperation.Steps">
+        <member name="P:SSDK.AI.Agent.AgentOperation.Steps">
             <summary>
             The steps of the execution which must run in sequence.
             </summary>
         </member>
-        <member name="M:SSDK.AI.AgentOperation.#ctor">
+        <member name="M:SSDK.AI.Agent.AgentOperation.#ctor">
             <summary>
             Creates an empty agent operation
             </summary>
         </member>
-        <member name="M:SSDK.AI.AgentOperation.#ctor(SSDK.AI.AgentOperationStep[])">
+        <member name="M:SSDK.AI.Agent.AgentOperation.#ctor(SSDK.AI.Agent.AgentOperationStep[])">
             <summary>
             Creates an agent operation with the given steps.
             </summary>
             <param name="steps">the steps of the opreation</param>
         </member>
-        <member name="P:SSDK.AI.AgentOperation.Status">
+        <member name="P:SSDK.AI.Agent.AgentOperation.Status">
             <summary>
             The status of the operation
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentOperation.CurrentStep">
+        <member name="P:SSDK.AI.Agent.AgentOperation.CurrentStep">
             <summary>
             The index of the current step of the operation.
             </summary>
         </member>
-        <member name="M:SSDK.AI.AgentOperation.AsSingle">
+        <member name="M:SSDK.AI.Agent.AgentOperation.AsSingle">
             <summary>
             Gets the single operation target, assuming that the number of steps is one.
             </summary>
             <returns>-1 if empty operation, or the target of the first execution first</returns>
         </member>
-        <member name="M:SSDK.AI.AgentOperation.Merge(SSDK.AI.AgentOperation)">
+        <member name="M:SSDK.AI.Agent.AgentOperation.Merge(SSDK.AI.Agent.AgentOperation)">
             <summary>
             Merges the other operation into this operation, by appending the other operations steps
             to this.
             </summary>
             <param name="endWithOperation">the operation to end with</param>
         </member>
-        <member name="M:SSDK.AI.AgentOperation.Reverse">
+        <member name="M:SSDK.AI.Agent.AgentOperation.Reverse">
             <summary>
             Reverses the steps in the current operation.
             Some algorithms require this as they backtrack to find the path.
             </summary>
         </member>
-        <member name="M:SSDK.AI.AgentOperation.Execute(SSDK.AI.Agent)">
+        <member name="M:SSDK.AI.Agent.AgentOperation.Execute(SSDK.AI.Agent.Agent)">
             <summary>
             Continues the execution of the operation as normal. 
             </summary>
         </member>
-        <member name="M:SSDK.AI.AgentOperation.ExecuteAll(SSDK.AI.Agent)">
+        <member name="M:SSDK.AI.Agent.AgentOperation.ExecuteAll(SSDK.AI.Agent.Agent)">
             <summary>
             Completes the execution of the operation immediately, ignoring time steps. 
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentOperation.IsReady">
+        <member name="P:SSDK.AI.Agent.AgentOperation.IsReady">
             <summary>
             True if the operation is ready to be executed.
             </summary>
         </member>
-        <member name="M:SSDK.AI.AgentOperation.AsNew">
+        <member name="M:SSDK.AI.Agent.AgentOperation.AsNew">
             <summary>
             Returns a new operation with the exact details as this one.
             </summary>
             <returns>a clone of this operation</returns>
         </member>
-        <member name="M:SSDK.AI.AgentOperation.Pause">
+        <member name="M:SSDK.AI.Agent.AgentOperation.Pause">
             <summary>
             Pauses the operation entirely.
             </summary>
         </member>
-        <member name="M:SSDK.AI.AgentOperation.Single(System.Int32)">
+        <member name="M:SSDK.AI.Agent.AgentOperation.Single(System.Int32)">
             <summary>
             Creates an operation from a single vague action type.
             </summary>
             <param name="actionType">an action type which may be intepreted by the problem space.</param>
             <returns>the operation representing the action type</returns>
         </member>
-        <member name="M:SSDK.AI.AgentOperation.Single(SSDK.AI.AgentActionExecution)">
+        <member name="M:SSDK.AI.Agent.AgentOperation.Single(SSDK.AI.Agent.AgentActionExecution)">
             <summary>
             Creates an operation from a single execution.
             </summary>
             <param name="singleExecution">the execution that represents this operation</param>
             <returns>the operation representing the execution</returns>
         </member>
-        <member name="T:SSDK.AI.AgentOperationStatus">
+        <member name="M:SSDK.AI.Agent.AgentOperation.CalculateTotalCost(SSDK.AI.Agent.Agent)">
+            <summary>
+            Calculates the total cost of the operation
+            </summary>
+            <returns>the total cost of the operation</returns>
+        </member>
+        <member name="T:SSDK.AI.Agent.AgentOperationStatus">
             <summary>
             Depicts the status of an operation
             </summary>
         </member>
-        <member name="F:SSDK.AI.AgentOperationStatus.Scheduled">
+        <member name="F:SSDK.AI.Agent.AgentOperationStatus.Scheduled">
             <summary>
             Depicts that the operation has not yet been started, but it
             is either scheduled or for planning purposes.
             </summary>
         </member>
-        <member name="F:SSDK.AI.AgentOperationStatus.Running">
+        <member name="F:SSDK.AI.Agent.AgentOperationStatus.Running">
             <summary>
             Depicts that the operation is currently being executed, but 
             hasn't finished yet.
             </summary>
         </member>
-        <member name="F:SSDK.AI.AgentOperationStatus.Finished">
+        <member name="F:SSDK.AI.Agent.AgentOperationStatus.Finished">
             <summary>
             Depicts that the operation is finished entirely, and should
             be disposed.
             </summary>
         </member>
-        <member name="F:SSDK.AI.AgentOperationStatus.Paused">
+        <member name="F:SSDK.AI.Agent.AgentOperationStatus.Paused">
             <summary>
             Depicts that the operation is currently paused.
             </summary>
         </member>
-        <member name="T:SSDK.AI.AgentOperationStep">
+        <member name="T:SSDK.AI.Agent.AgentOperationStep">
             <summary>
             Depicts a step in the agent's operation, with reference to time.
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentOperationStep.Time">
+        <member name="P:SSDK.AI.Agent.AgentOperationStep.Time">
             <summary>
             Gets or sets the time this step should be performed at.
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentOperationStep.Executions">
+        <member name="P:SSDK.AI.Agent.AgentOperationStep.Executions">
             <summary>
             The actions that must be performed in sequence in as little
             time as possible.
             </summary>
         </member>
-        <member name="M:SSDK.AI.AgentOperationStep.#ctor(System.Int32,SSDK.AI.AgentActionExecution[])">
+        <member name="M:SSDK.AI.Agent.AgentOperationStep.#ctor(System.Int32,SSDK.AI.Agent.AgentActionExecution[])">
             <summary>
             Create a new step in any operation with the given time to execute, and
             action executions.
@@ -405,25 +426,25 @@
             <param name="time">the time in ms to execute relative to the operation start</param>
             <param name="executions">the execution specifications of the actions</param>
         </member>
-        <member name="M:SSDK.AI.AgentOperationStep.AsSingle">
+        <member name="M:SSDK.AI.Agent.AgentOperationStep.AsSingle">
             <summary>
             Gets the single execution target, assuming that the number of steps is one.
             </summary>
             <returns>-1 if empty step, or the target of the first execution</returns>
         </member>
-        <member name="M:SSDK.AI.AgentOperationStep.AsNew">
+        <member name="M:SSDK.AI.Agent.AgentOperationStep.AsNew">
             <summary>
             Returns a new operation step with the exact details as this one.
             </summary>
             <returns>a clone of this operation step</returns>
         </member>
-        <member name="M:SSDK.AI.AgentOperationStep.Execute(SSDK.AI.Agent)">
+        <member name="M:SSDK.AI.Agent.AgentOperationStep.Execute(SSDK.AI.Agent.Agent)">
             <summary>
             Executes all active executions
             </summary>
             <returns></returns>
         </member>
-        <member name="T:SSDK.AI.AgentProblemSpace">
+        <member name="T:SSDK.AI.Agent.AgentProblemSpace">
             <summary>
             An abstract class that provides the bare minimum on how an agent perceives the
             world.
@@ -432,27 +453,47 @@
             new problem space.
             </summary>
         </member>
-        <member name="P:SSDK.AI.AgentProblemSpace.MatchTolerance">
+        <member name="P:SSDK.AI.Agent.AgentProblemSpace.MatchTolerance">
             <summary>
             The match tolerance for equals on this problem space.
             </summary>
         </member>
-        <member name="M:SSDK.AI.AgentProblemSpace.Perceive(SSDK.AI.Agent)">
+        <member name="M:SSDK.AI.Agent.AgentProblemSpace.Perceive(SSDK.AI.Agent.Agent)">
             <summary>
             Perceives the world that the agent lives in to the agent's perspective.
             If this problem space is used to represent the world in its entirely, then
             leave as empty function.
             </summary>
         </member>
-        <member name="M:SSDK.AI.AgentProblemSpace.DistanceTo(SSDK.AI.AgentProblemSpace)">
+        <member name="M:SSDK.AI.Agent.AgentProblemSpace.DistanceTo(SSDK.AI.Agent.AgentProblemSpace)">
             <summary>
-            Calculates the distance between two problem states. May be used in some algorithms
-            to determine desirable actions.
+            Calculates the certainty distance between two problem states. May be used in some algorithms
+            to determine desirable actions. 
+            <br/>
+            The DistanceTo function is not to be confused with the heuristic function, which
+            is the estimated cost to achieve the space/state. The Distance function is more generally
+            how many things must change for the space to be the exact same, and is used for
+            state comparison (how certain this state is the exact same, 0 = same)
             </summary>
             <param name="space">the state to distantiate</param>
             <returns>the real number indicating a distance to the other state from this state</returns>
         </member>
-        <member name="M:SSDK.AI.AgentProblemSpace.Desirability(SSDK.AI.Agent)">
+        <member name="M:SSDK.AI.Agent.AgentProblemSpace.Heuristic(SSDK.AI.Agent.AgentProblemSpace)">
+            <summary>
+            Estimates the distance between two problem states. May be used in some algorithms
+            to determine desirable actions. 
+            <br/>
+            The Heuristic function is not to be confused with the DistanceTo function, which
+            is the certainty distance between states. The heuristic function must provide
+            a guide on the cost required to reach the desired space.
+            </summary>
+            <param name="space">the state to distantiate (the desired space)</param>
+            <returns>
+            the real number indicating an estimated distance to the other state
+            from this state lower or equal to the actual distance
+            </returns>
+        </member>
+        <member name="M:SSDK.AI.Agent.AgentProblemSpace.Desirability(SSDK.AI.Agent.Agent)">
             <summary>
             Calculates the desirability of this problem space.
             </summary>
@@ -461,7 +502,7 @@
             At 100%, the agent assumes that it achieved perfection for the goal.
             </returns>
         </member>
-        <member name="M:SSDK.AI.AgentProblemSpace.Predict(SSDK.AI.Agent,SSDK.AI.AgentOperation)">
+        <member name="M:SSDK.AI.Agent.AgentProblemSpace.Predict(SSDK.AI.Agent.Agent,SSDK.AI.Agent.AgentOperation)">
             <summary>
             Predicts the effect of an operation on a specific agent, returning the new
             problem space.
@@ -470,28 +511,34 @@
             <param name="operation"></param>
             <returns></returns>
         </member>
-        <member name="T:SSDK.AI.AgentSolver">
+        <member name="T:SSDK.AI.Agent.AgentSolver">
             <summary>
             An agent solver depicts an algorithm for a tick of an agent's operation.
             It also provides methods on how to account for new problems. A new instance
             of a solver should be initiated for every agent to avoid preprocessing errors.
             </summary>
         </member>
-        <member name="M:SSDK.AI.AgentSolver.UpdateProblem(SSDK.AI.Agent)">
+        <member name="F:SSDK.AI.Agent.AgentSolver.MatchTolerance">
+            <summary>
+            The tolerance in which a state is said to be the same.
+            If set to 0, then the distance from one state to another to be the same must be 0.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.Agent.AgentSolver.UpdateProblem(SSDK.AI.Agent.Agent)">
             <summary>
             Updates the solver's memory to account for the new problem as per 
             agent.UpdateProblem.
             </summary>
             <param name="agent">the agent that needs solving</param>
         </member>
-        <member name="M:SSDK.AI.AgentSolver.Solve(SSDK.AI.Agent)">
+        <member name="M:SSDK.AI.Agent.AgentSolver.Solve(SSDK.AI.Agent.Agent)">
             <summary>
             Attempts to solve the agent's current problem.
             </summary>
             <param name="agent">the agent that needs solving</param>
             <returns>an operation on the agent, which should lead to the desired state</returns>
         </member>
-        <member name="M:SSDK.AI.AgentSolver.Check(SSDK.AI.Agent,SSDK.AI.AgentOperation)">
+        <member name="M:SSDK.AI.Agent.AgentSolver.Check(SSDK.AI.Agent.Agent,SSDK.AI.Agent.AgentOperation)">
             <summary>
             Checks to make sure that the operation will lead to the agent's desired space.
             </summary>
@@ -499,35 +546,740 @@
             <param name="operation">the current operation of the agent</param>
             <returns>true if there are no problems with the operation</returns>
         </member>
-        <member name="T:SSDK.AI.Solvers.BFSSolver">
+        <member name="T:SSDK.AI.Agent.Solvers.AStarSolver">
+            <summary>
+            Depicts a A* Search solver for an AI agent.
+            <br/>
+            A* Search has the following: <br/>
+            * To be used for solving a problem all at once (resulting in a set of subsequently achievable states) <br/>
+            * Assumes that actions are deterministic <br/>
+            * Requires Heuristic, Hash and Equals to be implemented in problem space <br/>
+            + Path detection, but not always optimal <br/>
+            + Unlike GBFS, considers action costs.
+            - Much faster than BFS or UCS, but performance generating an optimal path requires a good heuristic.  <br/>
+            - Depends on exact state computation <br/>
+            - An informed search algorithm requiring a heuristic function to be implemented.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.Agent.Solvers.AStarSolver.Solve(SSDK.AI.Agent.Agent)">
+            <summary>
+            Solves the agent by using Greedy Best First Search to generate an operation that computes
+            the closest path while accounting for action costs.
+            </summary>
+            <param name="agent">the agent to solve</param>
+            <returns>an operation attempts to lead the agent to the desired space</returns>
+        </member>
+        <member name="T:SSDK.AI.Agent.Solvers.BFSSolver">
             <summary>
             Depicts a BFS solver for an AI agent.
             <br/>
             BFS has the following: <br/>
             * To be used for solving a problem all at once (resulting in a set of subsequently achievable states) <br/>
-            * All problem spaces must contain a reference to the desired space <br/>
             * Assumes that actions are deterministic <br/>
             * Requires Hash and Equals to be implemented in problem space <br/>
             + Shortest path detection with no action cost <br/>
             + Perfect rationality but heavy memory consumption for every state <br/>
-            - Heavy memory consumption for exponential states   <br/>
+            - Heavy memory consumption for exponential states, however guiding the agent into sub-problems may alleviate this problem.  <br/>
             - Depends on exact state computation <br/>
-            - Desirability of a state has no effect on computation 
+            - A blind search algorithm
             </summary>
         </member>
-        <member name="F:SSDK.AI.Solvers.BFSSolver.MatchTolerance">
-            <summary>
-            The tolerance in which a state is said to be the same in BFS.
-            If set to 0, then the distance from one state to another to be the same must be 0.
-            </summary>
-        </member>
-        <member name="M:SSDK.AI.Solvers.BFSSolver.Solve(SSDK.AI.Agent)">
+        <member name="M:SSDK.AI.Agent.Solvers.BFSSolver.Solve(SSDK.AI.Agent.Agent)">
             <summary>
             Solves the agent by using BFS to generate an operation that computes
-            the closest path which accounting for action costs.
+            the closest path without accounting for action costs.
             </summary>
             <param name="agent">the agent to solve</param>
             <returns>an operation attempts to lead the agent to the desired space</returns>
+        </member>
+        <member name="T:SSDK.AI.Agent.Solvers.GBFSSolver">
+            <summary>
+            Depicts a Greedy Best-First Search solver for an AI agent.
+            <br/>
+            Greedy Best-First Search has the following: <br/>
+            * To be used for solving a problem all at once (resulting in a set of subsequently achievable states) <br/>
+            * Assumes that actions are deterministic <br/>
+            * Requires Heuristic, Hash and Equals to be implemented in problem space <br/>
+            + Path detection, but not always optimal <br/>
+            - Much faster than BFS or UCS, but performance generating an optimal path requires a good heuristic <br/>
+            - Depends on exact state computation <br/>
+            - An informed search algorithm requiring a heuristic function to be implemented.
+            - Unlike A*, does not consider action costs.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.Agent.Solvers.GBFSSolver.Solve(SSDK.AI.Agent.Agent)">
+            <summary>
+            Solves the agent by using Greedy Best First Search to generate an operation that computes
+            the closest path while accounting for action costs.
+            </summary>
+            <param name="agent">the agent to solve</param>
+            <returns>an operation attempts to lead the agent to the desired space</returns>
+        </member>
+        <member name="T:SSDK.AI.Agent.Solvers.UCSSolver">
+            <summary>
+            Depicts a UCS solver for an AI agent.
+            <br/>
+            UCS has the following: <br/>
+            * To be used for solving a problem all at once (resulting in a set of subsequently achievable states) <br/>
+            * Assumes that actions are deterministic <br/>
+            * Requires Hash and Equals to be implemented in problem space <br/>
+            + Shortest path detection with action cost <br/>
+            + Perfect rationality but heavy memory consumption for every state <br/>
+            - Heavy memory consumption for exponential states, however guiding the agent into sub-problems may alleviate this problem.  <br/>
+            - Depends on exact state computation <br/>
+            - A blind search algorithm
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.Agent.Solvers.UCSSolver.Solve(SSDK.AI.Agent.Agent)">
+            <summary>
+            Solves the agent by using UCS to generate an operation that computes
+            the closest path while accounting for action costs.
+            </summary>
+            <param name="agent">the agent to solve</param>
+            <returns>an operation attempts to lead the agent to the desired space</returns>
+        </member>
+        <member name="T:SSDK.AI.KBS.Arithmetic.KBAdd">
+            <summary>
+            Represents a add operation on a constant (e.g. 1 + 2)
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBAdd.LHS">
+            <summary>
+            The left-side term which is compared
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBAdd.RHS">
+            <summary>
+            The right-side term which is compared.
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.Arithmetic.KBDivide">
+            <summary>
+            Represents a divide operation on a constant (e.g. 1 / 2)
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBDivide.LHS">
+            <summary>
+            The left-side term which is compared
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBDivide.RHS">
+            <summary>
+            The right-side term which is compared.
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.Arithmetic.KBEquals">
+            <summary>
+            Represents a equals operation on a symbol (e.g. 1 = 1)
+            Not to be confused with the logical agreement, although this
+            can be considered a logical connective to be used for arithmetic purposes
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBEquals.LHS">
+            <summary>
+            The left-side term which is compared
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBEquals.RHS">
+            <summary>
+            The right-side term which is compared.
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.Arithmetic.KBGreaterThan">
+            <summary>
+            Represents a equals operation on a constant (e.g. 1 > 2)
+            Not to be confused with the logical agreement, although this
+            can be considered a logical connective to be used for arithmetic purposes
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBGreaterThan.LHS">
+            <summary>
+            The left-side term which is compared
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBGreaterThan.RHS">
+            <summary>
+            The right-side term which is compared.
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.Arithmetic.KBGreaterThanOrEquals">
+            <summary>
+            Represents a equals operation on a constant (e.g. 1 >= 2)
+            Not to be confused with the logical agreement, although this
+            can be considered a logical connective to be used for arithmetic purposes
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBGreaterThanOrEquals.LHS">
+            <summary>
+            The left-side term which is compared
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBGreaterThanOrEquals.RHS">
+            <summary>
+            The right-side term which is compared.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:SSDK.AI.KBS.Arithmetic.KBLessThan" -->
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBLessThan.LHS">
+            <summary>
+            The left-side term which is compared
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBLessThan.RHS">
+            <summary>
+            The right-side term which is compared.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:SSDK.AI.KBS.Arithmetic.KBLessThanOrEquals" -->
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBLessThanOrEquals.LHS">
+            <summary>
+            The left-side term which is compared
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBLessThanOrEquals.RHS">
+            <summary>
+            The right-side term which is compared.
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.Arithmetic.KBMultiply">
+            <summary>
+            Represents a multiplication operation on a constant (e.g. 1 * 2)
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBMultiply.LHS">
+            <summary>
+            The left-side term which is compared
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBMultiply.RHS">
+            <summary>
+            The right-side term which is compared.
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.Arithmetic.KBNegation">
+            <summary>
+            Represents a negation operation on a constant (e.g. -1)
+            Not to be confused with the logical not.
+            
+            A negation can only be applied on an arithmetic variable (i.e. KBNumericSymbol).
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBNegation.Factor">
+            <summary>
+            The term which is negated.
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.Arithmetic.KBNotEquals">
+            <summary>
+            Represents a not equals operation on a symbol (e.g. 1 != -1)
+            Not to be confused with the logical agreement, although this
+            can be considered a logical connective to be used for arithmetic purposes.
+            
+            This is just a simpler way of saying KBNot(KBEquals(t1,t2));
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBNotEquals.LHS">
+            <summary>
+            The left-side term which is compared
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBNotEquals.RHS">
+            <summary>
+            The right-side term which is compared.
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.Arithmetic.KBSubtract">
+            <summary>
+            Represents a add operation on a constant (e.g. 1 + 2)
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBSubtract.LHS">
+            <summary>
+            The left-side term which is compared
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Arithmetic.KBSubtract.RHS">
+            <summary>
+            The right-side term which is compared.
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.KB">
+            <summary>
+            Represents the knowledge base
+            </summary>
+        </member>
+        <member name="F:SSDK.AI.KBS.KB._NextSymbolID">
+            <summary>
+            The next symbol id that will be returned on GetNextSymbolID
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.KBS.KB.GetNextSymbolID">
+            <summary>
+            Gets the next symbol ID, and increments 1 each time this function is called.
+            </summary>
+            <returns>the next symbol id</returns>
+        </member>
+        <member name="P:SSDK.AI.KBS.KB.Assertions">
+            <summary>
+            A list of assertions that should definitely hold true regardless of the world state.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.KB.Solved">
+            <summary>
+            If true, the KB has been solved at least once.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.KBS.KB.HasConflict">
+            <summary>
+            Returns the first conflict within the assertions found.
+            Only applies to solved assertions.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SSDK.AI.KBS.KB.ExistingSymbols">
+            <summary>
+            The dictionary of existing symbols, that contains all symbols ever created.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.KBS.KB.GetSymbol(System.String)">
+            <summary>
+            Gets the symbol from the existing symbols dictionary using the id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSDK.AI.KBS.KB.Solve">
+            <summary>
+            Solves the current knowledge base's assertions.
+            You will need to assert the necessary information for it to solve.
+            e.g. an undefined symbol (symbol that appears but is not asserted to be either true or false),
+                 cannot be used to solve any other symbol.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.KBS.KB.GetSymbols">
+            <summary>
+            Gets a list of symbols mentioned in the assertions.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SSDK.AI.KBS.KBBooleanSymbol">
+            <summary>
+            A boolean value, generally defined as a result of 
+            an arithmetic operation (==, or !=)
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.KBFactor">
+            <summary>
+            An abstract class that contains methods for solving
+            terms and basic arithmetic, for example (AND(0,0,0))...
+            or (a -> b = b - 10.0) or (a -> b = AND(a,c))
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.KBFactor.Null">
+            <summary>
+            Gets the null factor
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBFactor.Holds">
+            <summary>
+            Returns true if the factor holds true.
+            </summary>
+            <returns>true/false based on how the factor calculates.</returns>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBFactor.Calculate">
+            <summary>
+            Calculate the result of the current object.
+            </summary>
+            <param name="kb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBFactor.HasConflict">
+            <summary>
+            Returns true if there is a conflict within this factor.
+            i.e. this is asserted to be true, but the children calculations do not match.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBFactor.InverseHolds">
+            <summary>
+            Returns true if the inverse of the factor holds true.
+            </summary>
+            <returns>true/false based on how the factor calculates.</returns>
+        </member>
+        <member name="P:SSDK.AI.KBS.KBFactor.IsClass">
+            <summary>
+            Gets whether the factor/symbol is being interpreted as a class.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBFactor.GetSymbols">
+            <summary>
+            Gets all symbols used in this factor.
+            </summary>
+            <returns>all symbols in a set</returns>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBFactor.GetChildren">
+            <summary>
+            Gets the direct children under this factor
+            </summary>
+            <returns>all direct children in a list</returns>
+        </member>
+        <member name="P:SSDK.AI.KBS.KBFactor.Solved">
+            <summary>
+            If true, then the factor has been solved according to a KB.
+            This means that the Assertion variable is accurate.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.KBFactor.Assertion">
+            <summary>
+            If Solved is true, then this value is accurate within the KB.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.KBFactor.AltAssertion">
+            <summary>
+            If Solved is true, then this value is accurate within the KB.
+            This is an alternate assertion, used for non-logic (i.e. arithmetic)
+            logic.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBFactor.CanSolveForChild(SSDK.AI.KBS.KB,SSDK.AI.KBS.KBFactor)">
+            <summary>
+            Returns SolveTrue or SolveFalse if the child can be asserted to a particular value based
+            on the parent type.
+            </summary>
+            <param name="kb"></param>
+            <param name="child"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBFactor.GetAltSolutionForChild(SSDK.AI.KBS.KB,SSDK.AI.KBS.KBFactor)">
+            <summary>
+            Gets the alternate solution for children (i.e. the non-boolean value it must be).
+            </summary>
+            <param name="kb"></param>
+            <param name="child"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBFactor.Apply(System.Char,SSDK.AI.KBS.KBFactor[])">
+            <summary>
+            Applies a given operation to the given factor, returning a new factor that results from that operation.
+            </summary>
+            <param name="op"></param>
+            <param name="terms"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBFactor.SolveAssertion(SSDK.AI.KBS.KB,SSDK.AI.KBS.KBFactor)">
+            <summary>
+            Solves the current factor as an assertion if possible within the current knowledge, and returns
+            the number of operations / symbols solved.
+            </summary>
+            <returns>number of operations / symbols solved</returns>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBFactor.SolveAssertOther(SSDK.AI.KBS.KB,SSDK.AI.KBS.KBFactor)">
+            <summary>
+            Asserts that this statement is a value, when solving.
+            </summary>
+            <param name="kb"></param>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBFactor.SolveAssertTrue(SSDK.AI.KBS.KB)">
+            <summary>
+            Asserts that this statement is true, when solving.
+            </summary>
+            <param name="kb"></param>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBFactor.SolveAssertFalse(SSDK.AI.KBS.KB)">
+            <summary>
+            Asserts that this statement is false, when solving.
+            </summary>
+            <param name="kb"></param>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBFactor.ResetSolution">
+            <summary>
+            Resets the current solution.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBFactor.Simplify">
+            <summary>
+            Simplifies the current factor.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SSDK.AI.KBS.KBSymbol">
+            <summary>
+            A KB Symbol which identifies a piece of information.
+            An inverse symbol should not appear on an logical sentence, instead
+            the KBNot should be used.
+            </summary>
+        </member>
+        <member name="F:SSDK.AI.KBS.KBSymbol.ID">
+            <summary>
+            An identifier for the symbol
+            </summary>
+        </member>
+        <member name="F:SSDK.AI.KBS.KBSymbol.UniqueID">
+            <summary>
+            A unique identifier for the symbol.
+            </summary>
+        </member>
+        <member name="F:SSDK.AI.KBS.KBSymbol.RelationTypes">
+            <summary>
+            A dictionary of relation types that might occur from this class.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBSymbol.CreateRelation(SSDK.AI.KBS.KBSymbol)">
+            <summary>
+            Creates a relation from this class to a symbol.
+            For example if this class is 'if', then 
+            this function creates a relation if(to)
+            </summary>
+            <returns>the wrapped symbol for the relation</returns>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBSymbol.SetProperty(SSDK.AI.KBS.KBSymbol,SSDK.AI.KBS.KBSymbol)">
+            <summary>
+            Creates or sets a property onto this symbol.
+            </summary>
+            <param name="prop">property symbol</param>
+            <param name="value">property value symbol</param>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBSymbol.HasProperty(SSDK.AI.KBS.KBSymbol,SSDK.AI.KBS.KBSymbol)">
+            <summary>
+            Returns true if the property with the given value exists
+            on this symbol.
+            </summary>
+            <param name="prop">property symbol</param>
+            <param name="value">property value symbol</param>
+        </member>
+        <member name="P:SSDK.AI.KBS.KBSymbol.Inverse">
+            <summary>
+            Gets the inverse symbol if created (else use GetInverse)
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.KBSymbol.IsInverse">
+            <summary>
+            If true, then this symbol is an inverse symbol.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.KBSymbol.IsRelationalSymbol">
+            <summary>
+            If true, then the symbol is used as a class symbol.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBSymbol.GetInverse(SSDK.AI.KBS.KB)">
+            <summary>
+            Creates the inverse symbol (not symbol)
+            Used in classifications (definitely not symbol).
+            </summary>
+            <param name="kb">knowledge base</param>
+            <returns>the inverse symbol</returns>
+        </member>
+        <member name="T:SSDK.AI.KBS.KBVariable">
+            <summary>
+            Represents a sentence/symbol that may contain various properties or relations.
+            Must be extended (currently KBSymbol and KBWrappedSymbol).
+            </summary>
+        </member>
+        <member name="F:SSDK.AI.KBS.KBVariable.Properties">
+            <summary>
+            A property that exists within this symbol (if stored in a relation, then exists as a default backup property).
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.KBVariable.Relations">
+            <summary>
+            A set of classifications this symbol relates to.
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBVariable.SetProperty(SSDK.AI.KBS.KBSymbol,SSDK.AI.KBS.KBFactor)">
+            <summary>
+            Creates or sets a property onto this symbol.
+            </summary>
+            <param name="prop">property symbol</param>
+            <param name="value">property value symbol</param>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBVariable.HasProperty(SSDK.AI.KBS.KBSymbol,SSDK.AI.KBS.KBSymbol)">
+            <summary>
+            Returns true if the property with the given value exists
+            on this symbol.
+            </summary>
+            <param name="prop">property symbol</param>
+            <param name="value">property value symbol</param>
+        </member>
+        <member name="T:SSDK.AI.KBS.KBWrappedSymbol">
+            <summary>
+            A KB Symbol which identifies a piece of information.
+            An inverse symbol should not appear on an logical sentence, instead
+            the KBNot should be used.
+            
+            A wrapped symbol is a symbol that joins two symbols together.
+            E.g. is(animal), where is the outer symbol, and animal is the inner symbol.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.KBWrappedSymbol.Outer">
+            <summary>
+            The outer symbol (relation type)
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.KBWrappedSymbol.Inner">
+            <summary>
+            The inner symbol (to)
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.KBWrappedSymbol.IsInverse">
+            <summary>
+            If true, then this symbol is an inverse symbol.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.KBWrappedSymbol.Inverse">
+            <summary>
+            Gets the inverse symbol if created (else use GetInverse)
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.KBS.KBWrappedSymbol.GetInverse">
+            <summary>
+            Creates the inverse symbol (not wrapped symbol)
+            Used in classifications (definitely not symbol).
+            </summary>
+            <param name="kb">knowledge base</param>
+            <returns>the inverse symbol</returns>
+        </member>
+        <member name="T:SSDK.AI.KBS.Logic.KBAgreement">
+            <summary>
+            A logical connective that is asserted true on P and Q match.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Logic.KBAgreement.P">
+            <summary>
+            Gets the symbol or logical sentence of P (left-side).
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Logic.KBAgreement.Q">
+            <summary>
+            Gets the symbol or logical sentence of Q (right-side).
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.Logic.KBAnd">
+            <summary>
+            A logical connective that is asserted true when all inner sentences are also asserted true.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Logic.KBAnd.Sentences">
+            <summary>
+            Gets the symbol or sentence that must all be true.
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.Logic.KBImplication">
+            <summary>
+            A logical connective that is asserted true on P->Q when P is false, or Q.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Logic.KBImplication.Condition">
+            <summary>
+            Gets the symbol or logical sentence that implies a certain assertion.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Logic.KBImplication.Implication">
+            <summary>
+            Gets the symbol or logical sentence that is implied by the condition.
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.Logic.KBNot">
+            <summary>
+            A logical connective that inverts the sentence wrapped.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Logic.KBNot.Sentence">
+            <summary>
+            Gets the symbol or sentence that if true, the assertion is false, and vice-versa.
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.Logic.KBOr">
+            <summary>
+            A logical connective that is asserted true when any inner sentences are also asserted true.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Logic.KBOr.Sentences">
+            <summary>
+            Gets the symbol or sentence that at least one must be true for this to be true.
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.Logic.KBPropertyDeclaration">
+            <summary>
+            A Logical Connective which identifies a piece of information about a specific relation 
+            e.g. a symbol that is(player) has sym health that is symbol (numeral 50)
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Logic.KBPropertyDeclaration.Relation">
+            <summary>
+            The relation or symbol that this property is declared to.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Logic.KBPropertyDeclaration.Property">
+            <summary>
+            The property symbol that is defined.
+            </summary>
+        </member>
+        <member name="P:SSDK.AI.KBS.Logic.KBPropertyDeclaration.Value">
+            <summary>
+            The property value that is defined.
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.Logic.KBSolveType">
+            <summary>
+            Represents the solve type that a parent can pass to a calling child.
+            </summary>
+        </member>
+        <member name="F:SSDK.AI.KBS.Logic.KBSolveType.NoSolution">
+            <summary>
+            Represents that there is no current solution to the child.
+            </summary>
+        </member>
+        <member name="F:SSDK.AI.KBS.Logic.KBSolveType.Other">
+            <summary>
+            Represents that this solves differently (child does not need solving)
+            as parent will definitely handle it.
+            </summary>
+        </member>
+        <member name="F:SSDK.AI.KBS.Logic.KBSolveType.SolveTrue">
+            <summary>
+            Represents that the child can be asserted to be true
+            </summary>
+        </member>
+        <member name="F:SSDK.AI.KBS.Logic.KBSolveType.SolveFalse">
+            <summary>
+            Represents that the child can be asserted to be false
+            </summary>
+        </member>
+        <member name="F:SSDK.AI.KBS.Logic.KBSolveType.SolveArithmetic">
+            <summary>
+            Represents that the child can be solved to a certain arithmetic value.
+            The child must call the parent's GetAltSolutionForChild.
+            </summary>
+        </member>
+        <member name="T:SSDK.AI.KBS.Logic.KBSymbolRelation">
+            <summary>
+            A Logical Connective which identifies a piece of information about a symbol
+            </summary>
+        </member>
+        <member name="M:SSDK.AI.KBS.Symbols.KBSymbolExt_Days.CreateDaySymbols(SSDK.AI.KBS.KB,System.Int32,System.Int32)">
+            <summary>
+            Creates symbols for the days (0-Sunday, 6-Monday).
+            max must be more than min.
+            </summary>
+            <param name="min"></param>
+            <param name="max"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSDK.AI.KBS.Symbols.KBSymbolExt_Days.CreateDayClassifications(SSDK.AI.KBS.KB,SSDK.AI.KBS.KBSymbol[],SSDK.AI.KBS.KBSymbol,SSDK.AI.KBS.KBSymbol,SSDK.AI.KBS.KBSymbol)">
+            <summary>
+            Creates logical sentences for day classifications (e.g. yesterday of monday is sunday).
+            </summary>
+            <param name="daySymbols"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSDK.AI.KBS.Symbols.SymbolExt.SelectOne(System.Collections.Generic.IEnumerable{SSDK.AI.KBS.KBSymbol},System.String)">
+            <summary>
+            Selects a single symbol given a string id from symbols.
+            </summary>
+            <param name="symbols"></param>
+            <param name="id"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

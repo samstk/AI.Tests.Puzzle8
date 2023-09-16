@@ -3,7 +3,11 @@
 // Define the problem space
 
 using SSDK.AI;
-using SSDK.AI.Solvers;
+using SSDK.AI.Agent;
+using SSDK.AI.Agent.Solvers;
+using SSDK.AI.KBS;
+using SSDK.AI.KBS.Logic;
+using SSDK.Core.Structures.Primitive;
 using static Puzzle8Problem;
 
 /// <summary>
@@ -152,6 +156,44 @@ public class Puzzle8Problem : AgentProblemSpace
         return dist;
     }
 
+    /// <summary>
+    /// Gets the position of the number in the state space.
+    /// </summary>
+    /// <param name="num">the num to look for</param>
+    /// <returns>the position of the num</returns>
+    public int PositionOf(int num)
+    {
+        for (int x = 0; x < 9; x++)
+        {
+            // Check for position of num
+            if (State[x] == num)
+            {
+                return x;
+            }
+        }
+        
+        return -1;
+    }
+    public override UncontrolledNumber Heuristic(AgentProblemSpace space)
+    {
+        Puzzle8Problem problem = space as Puzzle8Problem;
+        // Commonly used heuristic - manhattan distance for each tile.
+        double total = 0;
+        for(int i = 0; i<9; i++)
+        {
+            int pf = PositionOf(i);
+            int pfx = pf % 3;
+            int pfy = pf / 3;
+            
+            int pt = problem.PositionOf(i);
+            int ptx = pt % 3;
+            int pty = pt / 3;
+
+            total += Math.Abs(ptx - pfx) + Math.Abs(pty - pfy);
+        }
+        return total;
+    }
+
     public override int GetHashCode()
     {
         int hash = 0;
@@ -187,32 +229,18 @@ public static class Program
         Console.WriteLine("Creating inital problem space..");
 
         Puzzle8Problem initialProblem = new Puzzle8Problem(
-        4, 3, 0, 5, 8, 7, 2, 6, 1
+        8, 7, 6, 5, 4, 3, 2, 1, 0
         );
 
         // Guided problem solving
+        // Previously, there were several guided steps
+        // to prevent BFS and UCS from dropping performance.
+        // GBFS is the best solution at this point in time, without 
+        // the need for guiding, and generates a more optimal solution.
+        // A* costs more performance-wise, and unnecessary as
+        // action costs are the same.
         Puzzle8Problem[] steps = new Puzzle8Problem[]
         {
-            new Puzzle8Problem(true,
-                1, 2, 3,
-                7, -1, -1,
-                -1, -1, -1
-                ),
-            new Puzzle8Problem(true,
-                1, 2, 3,
-                7, 0, 6,
-                -1, -1, -1
-                ),
-            new Puzzle8Problem(true,
-                1, 2, 3,
-                0, 5, 7,
-                -1, -1, -1
-                ),
-            new Puzzle8Problem(true,
-                1, 2, 3,
-                4, 5, 6,
-                -1, -1, -1
-                ),
             new Puzzle8Problem(true,
                 1, 2, 3,
                 4, 5, 6,
@@ -227,14 +255,14 @@ public static class Program
             new AgentAction((a, t) => {
                 a.UpdateProblemUsingPrediction(t);
                 }, null, MOVE_UP, MOVE_RIGHT) { Name = "MOVE" }
-            ), initialProblem, new BFSSolver());
+            ), initialProblem, new GBFSSolver());
         
         agent.Guide(steps);
 
         AgentOperation completeOperation = new AgentOperation();
 
         DateTime start = DateTime.Now;
-        Console.WriteLine("Solving...");
+        Console.WriteLine($"Solving {agent.Solver}...");
         for (int i = 0; i < steps.Length; i++)
         {
             
@@ -245,9 +273,20 @@ public static class Program
             
         }
         Console.WriteLine($"Solved in {(DateTime.Now - start)}");
-        Console.WriteLine(completeOperation.ToString().Replace("(1)", "UP").Replace("(2)", "DOWN").Replace("(3)", "LEFT").Replace("(4)", "RIGHT"));
-        Console.WriteLine("RESULTING IN");
+
+        // Animate the response
+        foreach(AgentOperationStep step in completeOperation.Steps)
+        {
+            Thread.Sleep(50);
+            Console.Clear();
+            Console.WriteLine(step.ToString().Replace("(1)", "UP").Replace("(2)", "DOWN").Replace("(3)", "LEFT").Replace("(4)", "RIGHT"));
+            initialProblem = initialProblem.Predict(agent, new AgentOperation(step.AsNew())) as Puzzle8Problem;
+            Console.WriteLine(initialProblem);
+        }
+        Console.WriteLine("FINAL RESULT");
         Console.WriteLine(agent.CurrentProblemSpace);
+
+        Console.WriteLine("ALL STEPS");
+        Console.WriteLine(completeOperation.ToString().Replace("(1)", "UP").Replace("(2)", "DOWN").Replace("(3)", "LEFT").Replace("(4)", "RIGHT"));
     }
 }
-
