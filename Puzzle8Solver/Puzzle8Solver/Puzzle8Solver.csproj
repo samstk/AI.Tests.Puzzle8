@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SSDK\SSDK.AI\SSDK.AI.csproj" />
+    <ProjectReference Include="..\..\..\SSDK.AI\SSDK.AI\SSDK.AI.csproj" />
     <ProjectReference Include="..\..\..\SSDK\SSDK.Core\SSDK.Core\SSDK.Core.csproj" />
   </ItemGroup>
 

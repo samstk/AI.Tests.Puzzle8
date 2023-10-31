@@ -332,6 +332,77 @@
             with the 
             </summary>
         </member>
+        <member name="T:SSDK.Core.Exceptions.ExceptionHelper">
+            <summary>
+            Contains helper methods for exception defining.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Exceptions.ExceptionHelper.CompileMultiexceptionMessage(System.Collections.Generic.List{System.Exception},System.String)">
+            <summary>
+            Compiles a multi-exception message by preprending the base message,
+            and then adding all inner exceptions as a new line.
+            </summary>
+            <param name="baseMessage">the message to prepend before adding the inner exceptions</param>
+            <param name="innerExceptions">the inner exceptions whose messages will be added to this message</param>
+            <returns>a string containing the multi-exception message</returns>
+        </member>
+        <member name="T:SSDK.Core.Exceptions.InvalidFlagArgumentException">
+            <summary>
+            An invalid flag argument exception that An error that occurs when an argument is not compatible with the given flag.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Exceptions.InvalidFlagArgumentException.Flag">
+            <summary>
+            The flag that had an invalid argument.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Exceptions.InvalidFlagArgumentException.Argument">
+            <summary>
+            The flag argument that was invalid.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Exceptions.InvalidFlagArgumentException.Reason">
+            <summary>
+            The reason why the argument was invalid.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Exceptions.InvalidFlagArgumentException.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Constructs an invalid flag exception with the given flag and reference.
+            </summary>
+            <param name="flag">the flag that is invalid</param>
+            <param name="arg">the arg of the flag</param>
+            <param name="reason">the reason why the arguement is invalid</param>
+        </member>
+        <member name="T:SSDK.Core.Exceptions.InvalidFlagException">
+            <summary>
+            An invalid flag exception, that should be thrown from the FlagIntepreter class.
+            An error that occurs when a flag does not exist in the dictionary.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Exceptions.InvalidFlagException.#ctor(System.String)">
+            <summary>
+            Constructs an invalid flag exception with the given flag and reference.
+            </summary>
+            <param name="flag">the flag that is invalid</param>
+        </member>
+        <member name="T:SSDK.Core.Exceptions.MultipleFlagErrorsException">
+            <summary>
+            An invalid flag exception, that should be thrown from the FlagIntepreter class.
+            An error that occurs when a flag does not exist in the dictionary.
+            </summary>
+        </member>
+        <member name="P:SSDK.Core.Exceptions.MultipleFlagErrorsException.InnerExceptions">
+            <summary>
+            Gets all flag exceptions that caused this exception to be thrown.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.Exceptions.MultipleFlagErrorsException.#ctor(System.Collections.Generic.List{System.Exception})">
+            <summary>
+            Constructs an invalid flag exception with the given flag and reference.
+            </summary>
+            <param name="flag">the flag that is invalid</param>
+        </member>
         <member name="T:SSDK.Core.Exceptions.OperationNotStartedException">
             <summary>
             Represents an exception that occurs when a operation was never
@@ -342,6 +413,49 @@
             <summary>
             Gets the operation that was never started, which caused this exception.
             </summary>
+        </member>
+        <member name="T:SSDK.Core.FlagDefinition">
+            <summary>
+            A function type for a flag definition, which
+            returns true if the flag consumes the next argument.
+            </summary>
+            <typeparam name="T">the object type to apply the flag to</typeparam>
+            <param name="arg">
+            the string argument of the flag, which is automatically set
+            to the next string argument and not necessarily to be consumed.
+            </param>
+            <returns>true if the flag consumes the next argument.</returns>
+        </member>
+        <member name="T:SSDK.Core.FlagIntepreter">
+            <summary>
+            The flag helper class which provides a method to import
+            flags on a specific class.
+            
+            See FlagDefinition for how flags should be defined within a dictionary.
+            </summary>
+        </member>
+        <member name="M:SSDK.Core.FlagIntepreter.ProcessAsArgs(System.String[],System.Collections.Generic.Dictionary{System.String,SSDK.Core.FlagDefinition},System.Boolean,System.Boolean)">
+            <summary>
+            Imports the flags on a specific object, using the flag definitions dictionary.
+            </summary>
+            <param name="args">the arguments to process</param>
+            <param name="argMappings">
+            The mappings from flag names (e.g. -v) to action invocations to process the flag with a given argument.
+            e.g. -path 'path/' would invoke whatever the program's -path flag definition is, with the argument after it ('path/')
+            </param>
+            <param name="endWithUndefinedFlag">
+            If true, then the function will take an undefined flag and return its indices.
+            Useful when having a default end function.
+            </param>
+            <returns>-1 if all arguments were processed, else the index that the function stopped processing at</returns>
+            <exception cref="T:SSDK.Core.Exceptions.InvalidFlagException">
+            This exception occurs when endWithUndefinedFlag is false, 
+            and a flag that did not exist in the mapping was detected.
+            </exception>
+            <exception cref="!:MultipleFlagException">
+            This exception occurs when accumulateErrors is true,
+            and multiple errors have occured
+            </exception>
         </member>
         <member name="T:SSDK.Core.Helpers.ArrayHelper">
             <summary>
@@ -403,13 +517,28 @@
             Contains methods for helping with strings
             </summary>
         </member>
+        <member name="M:SSDK.Core.Helpers.StringHelper.SplitToCommandArgs(System.String)">
+            <summary>
+            Splits a string, that should be in the format of a command line, into
+            several arguments.
+            </summary>
+            <param name="commandLine">the line representing the full command</param>
+            <returns>a number of arguments derived from the command line</returns>
+        </member>
         <member name="M:SSDK.Core.Helpers.StringHelper.InsertOverwriteCenter(System.String,System.Int32,System.String)">
             <summary>
-            Inserts a string at a position by overwriting the original string.
+            Inserts a string at a position by overwriting the original string from the center.
             </summary>
             <param name="original">the original string</param>
             <param name="index">the index to insert at</param>
             <param name="toInsert">the string to insert</param>
+        </member>
+        <member name="M:SSDK.Core.Helpers.StringHelper.SpaceOutCapitals(System.String)">
+            <summary>
+            Inserts a space before every capital after the initial character.
+            </summary>
+            <param name="original">the original string to space out</param>
+            <returns>the spaced out string</returns>
         </member>
         <!-- Badly formed XML comment ignored for member "T:SSDK.Core.Structures.Graphs.GraphHelper" -->
         <member name="M:SSDK.Core.Structures.Graphs.GraphHelper.GetTotalDistance``1(System.Collections.Generic.IEnumerable{SSDK.Core.Structures.Graphs.GraphEdge{``0}})">
@@ -993,6 +1122,12 @@
             Since divisions can result in irrational numbers, this limits the amount of decimals
             that can result in an division.
             </summary>
+        </member>
+        <member name="M:SSDK.Core.Structures.Primitive.UncontrolledNumber.ToDouble">
+            <summary>
+            Converts the number back into a double.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:SSDK.Core.Structures.Trees.AVLSearchTree`1">
             <summary>

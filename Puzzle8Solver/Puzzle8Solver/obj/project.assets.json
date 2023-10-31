@@ -30,8 +30,8 @@
   "libraries": {
     "SSDK.AI/1.0.0": {
       "type": "project",
-      "path": "../../../SSDK/SSDK.AI/SSDK.AI.csproj",
-      "msbuildProject": "../../../SSDK/SSDK.AI/SSDK.AI.csproj"
+      "path": "../../../SSDK.AI/SSDK.AI/SSDK.AI.csproj",
+      "msbuildProject": "../../../SSDK.AI/SSDK.AI/SSDK.AI.csproj"
     },
     "SSDK.Core/1.0.0": {
       "type": "project",
@@ -78,8 +78,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.AI\\SSDK.AI.csproj": {
-              "projectPath": "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.AI\\SSDK.AI.csproj"
+            "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK.AI\\SSDK.AI\\SSDK.AI.csproj": {
+              "projectPath": "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK.AI\\SSDK.AI\\SSDK.AI.csproj"
             },
             "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.Core\\SSDK.Core\\SSDK.Core.csproj": {
               "projectPath": "C:\\Users\\samst\\OneDrive\\Documents\\0. Projects\\SSDK\\SSDK.Core\\SSDK.Core\\SSDK.Core.csproj"

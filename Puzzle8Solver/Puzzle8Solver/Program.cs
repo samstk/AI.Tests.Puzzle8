@@ -4,6 +4,7 @@
 
 using SSDK.AI;
 using SSDK.AI.Agent;
+using SSDK.AI.Agent.Info;
 using SSDK.AI.Agent.Solvers;
 using SSDK.AI.KBS;
 using SSDK.AI.KBS.Logic;
@@ -255,7 +256,23 @@ public static class Program
             new AgentAction((a, t) => {
                 a.UpdateProblemUsingPrediction(t);
                 }, null, MOVE_UP, MOVE_RIGHT) { Name = "MOVE" }
-            ), initialProblem, new GBFSSolver());
+            ), initialProblem, new GBFSSolver(), new AgentInfo()
+            {
+                Modularity = AgentModularity.Flat,
+                PlanningHorizon = AgentPlanningHorizon.IndefiniteStage,
+                Representation = AgentRepresentation.ExplicitStates,
+                ComputationalLimits = AgentComputationalLimits.PerfectRationality,
+                Learning = AgentLearningType.KnowledgeIsGiven,
+                SensingUncertainty = AgentSensingUncertainty.FullyObservable,
+                EffectUncertainty = AgentEffectUncertainty.Deterministic,
+                Preference = AgentPreferences.AchievementGoal,
+                NumberOfAgents = AgentCoordination.SingleAgent,
+                Interaction = AgentInteractionTime.Offline
+            });
+
+        Console.WriteLine(agent.Info);
+
+        Thread.Sleep(1000);
         
         agent.Guide(steps);
 
